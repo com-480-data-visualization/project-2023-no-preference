@@ -2,7 +2,7 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-| | |
+| Ulysse Wimder | 269583 |
 | | |
 | | |
 
