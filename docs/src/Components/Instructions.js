@@ -1,14 +1,17 @@
 import './Instructions.css'
+import Slider from '@mui/material/Slider';
 
-function Instructions() {
+export default function Instructions () {
     return (
         <div className="instructions">
             <h1>Instructions</h1>
-            <p>Click on the buttons to change the chart.</p>
-            <p>Click on the chart to change the chart type.</p>
-            <p>Hover over the chart to see the data.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem.
+            </p>
+            <h3>Adjust the slider below to change the chart</h3>
+            <Slider size="small" defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
         </div>
     )
 }
-
-export default Instructions;

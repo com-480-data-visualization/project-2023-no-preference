@@ -1,6 +1,7 @@
 import './App.css';
 import Chart from './Components/Chart';
 import Instructions from './Components/Instructions';
+import CardMUI from './Components/CardMUI';
 
 function App() {
   return (
@@ -11,12 +12,16 @@ function App() {
         </h2>  
       </header>
       <main className='App-main'>
-        <Chart />
-        <Instructions />
+        <div className='App-main-row'>
+          <Chart />
+          <Instructions />
+        </div>
+        <div className='App-cardRow'>
+          <CardMUI/>
+          <CardMUI/>
+          <CardMUI/>
+        </div>
       </main>
-      <footer className='App-footer'>
-        footer
-      </footer>
     </div>
   );
 }
