@@ -21,6 +21,11 @@
 **80% of the final grade**
 
 
+## Website
+We host our website on Github Pages: [no preference](https://com-480-data-visualization.github.io/project-2023-no-preference/)
+
+The website is a React App, the source code can be found in the `pages` branch, and we use `gh-pages` as an automated deploy branch that contains the minified builds.
+
 ## Late policy
 
 - < 24h: 80% of the grade for the milestone
