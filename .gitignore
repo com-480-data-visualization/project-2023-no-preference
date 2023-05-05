@@ -19,3 +19,7 @@
 
 # jupyter
 **/*.ipynb_checkpoints
+
+# dataset
+data/PlayerCountHistory*
+data/application*
