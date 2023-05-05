@@ -51,7 +51,8 @@
 
 .App-cardRow {
   display: flex;
-  width: 70vw;
+  justify-content: space-between;
+  width: 100%;
   height: 16vh;
   margin-bottom: 4vh;
 }

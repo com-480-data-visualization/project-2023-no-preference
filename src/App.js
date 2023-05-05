@@ -17,9 +17,9 @@ function App() {
           <Instructions />
         </div>
         <div className='App-cardRow'>
-          <CardMUI/>
-          <CardMUI/>
-          <CardMUI/>
+          <CardMUI title="Player count" />
+          <CardMUI title="Play time" />
+          <CardMUI title="Engagement" />
         </div>
       </main>
     </div>
