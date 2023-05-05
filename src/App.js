@@ -1,5 +1,4 @@
 import './App.css';
-import Chart from './Components/Chart';
 import Instructions from './Components/Instructions';
 import CardMUI from './Components/CardMUI';
 
@@ -13,13 +12,15 @@ function App() {
       </header>
       <main className='App-main'>
         <div className='App-main-row'>
-          <Chart />
+          <div>
+            <img className='chart-demo-image' alt="chart demo" src={process.env.PUBLIC_URL + "/images/main-graph-demo1.png"} />
+            <div className='App-cardRow'>
+              <CardMUI title="Player count" />
+              <CardMUI title="Play time" />
+              <CardMUI title="Engagement" />
+            </div>
+          </div>
           <Instructions />
-        </div>
-        <div className='App-cardRow'>
-          <CardMUI title="Player count" />
-          <CardMUI title="Play time" />
-          <CardMUI title="Engagement" />
         </div>
       </main>
     </div>
