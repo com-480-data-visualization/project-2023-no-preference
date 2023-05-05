@@ -2,8 +2,14 @@ import './App.css';
 import Instructions from './Components/Instructions';
 import CardMUI from './Components/CardMUI';
 
+// dataset
+import topcount from './data/topcount.json'
+import playercount from './data/playercount.json'
+
 function App() {
   return (
+    //! test the dataset
+    // console.log(topcount)
     <div className="App">
       <header className="App-header">
         <h2>
