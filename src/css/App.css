@@ -1,29 +1,15 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-weight: 300;
-  background-color: #EBECF2;
+:root {
+  --bg-color: #2A475E;
+  --fg-color: #1B2838;
 }
 
-.App-header {
-  min-height: 8vh;
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  justify-content: center;
-  font-size: calc(5px + 2vmin);
-  color: black;
-}
-
-.App-header h2 {
-  flex-grow: 1;
-  text-align: left;
-  padding-left: 3vw;
-  font-size: 2rem;
-  font-weight: 400;
-  margin-bottom: 1rem;
+body {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
 }
 
 .App-main {
