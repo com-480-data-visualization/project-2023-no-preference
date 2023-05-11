@@ -17,7 +17,7 @@ cd project-2023-no-preference
 git switch website
 ```
 
-### Start local website
+### Start local [website](https://com-480-data-visualization.github.io/project-2023-no-preference/)
 From the `website` branch root:
 ```
 yarn start
