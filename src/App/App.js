@@ -5,11 +5,16 @@ import CardMUI from '../Components/CardMUI';
 // dataset
 import topcount from '../data/topcount.json';
 import playercount from '../data/playercount.json';
-import { AppBar } from '@mui/material';
+import { AppBar, Container, Toolbar } from '@mui/material';
 
 function App() {
   return (
     <main className='App-main'>
+      <AppBar position='sticky' component='div'>
+        <Toolbar>
+
+        </Toolbar>
+      </AppBar>
       <div className='App-main-row'>
         <div>
           <img className='chart-demo-image' alt="chart demo" src={process.env.PUBLIC_URL + "/images/main-graph-demo1.png"} />

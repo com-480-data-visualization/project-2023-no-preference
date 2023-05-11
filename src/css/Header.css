@@ -21,6 +21,17 @@
     }
 }
 
+@keyframes appear-right {
+    0% {
+        transform: translateX(20%);
+        color: rgba(211, 211, 211, 0);
+    }
+    100% {
+        transform: translateX(0);
+        color: rgba(211, 211, 211, 1);
+    }
+}
+
 @keyframes appear-down {
     0% {
         transform: translateY(40%);
@@ -39,6 +50,10 @@
     }
 }
 
+body {
+    overflow: hidden;
+}
+
 .hide-me {
     animation-name: disappear-up;
     animation-duration: 1s;
@@ -49,11 +64,26 @@
 
 header {
     height: 100vh;
-    display: block;
+    display: flex;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
     background-color: var(--fg-color);
-    padding-top: 5%;
+}
+
+.header-subtitle {
+    color: rgb(211, 211, 211);
+    animation-name: appear-right;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    padding-bottom: 2em;
+}
+
+.header-team-name {
+    font-family: Connection, Arial, sans-serif;
+    font-size: 1.5em;
+    color: yellow;
+    padding: 5px;
 }
 
 header > h1 {
@@ -82,7 +112,7 @@ header > h1 {
 }
 
 .header-menu button {
-    --ss: 1px; /* shadow size */
+    --ss: 2px; /* shadow size */
     --sc: black; /* shadow color */
     font-size: 0.7em;
     color: var(--bg-color);
