@@ -3,7 +3,7 @@ import { Card, CardContent, CardActionArea, List, ListItem, ListItemIcon, ListIt
 export default function CardMUI (props) {
   const title = props.title;
   return (
-    <Card sx={{ maxWidth: 345, gap: 2 }}>
+    <Card sx={{ maxWidth: 345, gap: 2, borderRadius: 2 }}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

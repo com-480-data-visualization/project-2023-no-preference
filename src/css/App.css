@@ -3,6 +3,43 @@
   --fg-color: #1B2838;
 }
 
+@keyframes disappear-down {
+  0% {
+    height: 0;
+    padding: 0;
+  }
+  100% {
+    
+  }
+}
+
+@keyframes appear-up {
+  0% {
+    height: 0;
+    padding: 0;
+  }
+  100% {
+    height: 100%;
+    padding: 0;
+  }
+}
+
+.hide-me {
+  animation-name: disappear-down;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  overflow: hidden;
+  animation-fill-mode: forwards;
+}
+
+.show-me {
+  animation-name: appear-up;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  overflow: hidden;
+  animation-fill-mode: backwards;
+}
+
 body {
   display: block;
   height: 100vh;

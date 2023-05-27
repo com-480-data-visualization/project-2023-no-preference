@@ -3,7 +3,9 @@ import { Button, List, ListItem, Typography } from '@mui/material';
 
 function newGame() {
   document.getElementsByTagName('header')[0].className = "hide-me";
-  document.getElementsByTagName('body')[0].style.overflow = "scroll";
+  document.getElementsByTagName('footer')[0].className = "hide-me";
+  document.getElementsByTagName('main')[0].className = "show-me";
+  document.getElementsByTagName('body')[0].style.overflow = "scroll";  
 }
 
 const menuItems = [

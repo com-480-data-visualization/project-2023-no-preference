@@ -1,33 +1,36 @@
 import '../css/App.css';
-import Instructions from '../Components/Instructions';
+import Chart from '../Components/Chart';
 import CardMUI from '../Components/CardMUI';
+import NavBar from '../Components/NavBar';
 
 // dataset
 import topcount from '../data/topcount.json';
 import playercount from '../data/playercount.json';
-import { AppBar, Container, Toolbar } from '@mui/material';
+//MUI
+import { AppBar, Container, Toolbar, Button, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Stack from '@mui/joy/Stack';
 
 function App() {
   return (
     <main className='App-main'>
-      <AppBar position='sticky' component='div'>
-        <Toolbar>
-
-        </Toolbar>
-      </AppBar>
-      <div className='App-main-row'>
-        <div>
-          <img className='chart-demo-image' alt="chart demo" src={process.env.PUBLIC_URL + "/images/main-graph-demo1.png"} />
-          <div className='App-cardRow'>
-            <CardMUI title="Player count" />
-            <CardMUI title="Play time" />
-            <CardMUI title="Engagement" />
-          </div>
-        </div>
-        <Instructions />
-      </div>
+      <NavBar />
+      <Container maxWidth="xl">
+        <Grid container spacing={2}>
+          <Grid item xs={9}>
+            <Chart />
+          </Grid>
+          <Grid item xs={3}>
+            <Stack spacing={2}>
+              <CardMUI title="Player count"/>
+              <CardMUI title="Play time"/>
+            </Stack>
+          </Grid>
+        </Grid> 
+      </Container>
     </main>
   );
 }
+
 
 export default App;
