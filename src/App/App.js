@@ -7,7 +7,7 @@ import NavBar from '../Components/NavBar';
 import topcount from '../data/topcount.json';
 import playercount from '../data/playercount.json';
 //MUI
-import { AppBar, Container, Toolbar, Button, Typography } from '@mui/material';
+import { AppBar, Container, Toolbar, Button, Typography, Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Stack from '@mui/joy/Stack';
 
@@ -15,7 +15,7 @@ function App() {
   return (
     <main className='App-main'>
       <NavBar />
-      <Container maxWidth="xl">
+      <Box sx={{ m: '1rem' }}>
         <Grid container spacing={2}>
           <Grid item xs={9}>
             <Chart />
@@ -27,7 +27,7 @@ function App() {
             </Stack>
           </Grid>
         </Grid> 
-      </Container>
+      </Box>
     </main>
   );
 }
