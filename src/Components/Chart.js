@@ -1,12 +1,13 @@
 import './Chart.css';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
 //MUI
-import Slider, { SliderThumb, SliderValueLabelProps } from '@mui/material/Slider';
+import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
-import { Container, Box, Tooltip, Typography } from '@mui/material';
+import { Container, Box, Button, Stack, ToggleButton } from '@mui/material';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function Chart() {
     const canvasRef = useRef(null);
@@ -17,6 +18,7 @@ export default function Chart() {
       canvas.style.height = "100%";
       canvas.style.backgroundColor = "white";
       canvas.style.borderRadius = "10px";
+      canvas.style.boxShadow = "0px 1px 3px -1.5px rgba(0,0,0,0.75)";
       canvas.style.minHeight = "70vh";
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
@@ -27,32 +29,22 @@ export default function Chart() {
             <canvas id="myCanvas" ref={canvasRef}>
             </canvas>
             <Box sx={{ m: '0.5rem' }}>
-            <PrettoSlider
-                valueLabelDisplay="auto"
-                aria-label="pretto slider"
-                defaultValue={20}
-            />
+                <CoolSlider
+                    valueLabelDisplay="auto"
+                    defaultValue={0}
+                    onChange={(event) => {}}
+                />
             </Box>
+            <ButtonRow />
         </Container>
     )
 }
 
-function ValueLabelComponent(props) {
-  const { children, value } = props;
-
-  return (
-    <Tooltip enterTouchDelay={0} placement="top" title={value}>
-      {children}
-    </Tooltip>
-  );
-}
-  
-ValueLabelComponent.propTypes = {
-children: PropTypes.element.isRequired,
-value: PropTypes.number.isRequired,
-};
-
-const PrettoSlider = styled(Slider)({
+/**
+ * Get the value with the onChange function and do something with it
+ * https://mui.com/material-ui/api/slider/
+ */
+const CoolSlider = styled(Slider)({
     color: '#1976D2',
     height: 8,
     '& .MuiSlider-track': {
@@ -90,3 +82,34 @@ const PrettoSlider = styled(Slider)({
         },
     },
 });
+
+/**
+ * The row with the four buttons
+ * @todo: Make the buttons show the different charts
+ */
+function ButtonRow() {
+    const [alignment, setAlignment] = React.useState('playerCount');
+  
+    const handleChange = (event, newAlignment) => {
+      setAlignment(newAlignment);
+    };
+  
+    return (
+
+        <ToggleButtonGroup
+            color="primary"
+            value={alignment}
+            exclusive
+            onChange={handleChange}
+            aria-label="Platform"
+            alignItems="center"
+            justifyContent="center"
+        >
+            <ToggleButton value="playerCount">Player Count</ToggleButton>
+            <ToggleButton value="playedTime">Played Time</ToggleButton>
+            <ToggleButton value="engagement">Engagement</ToggleButton>
+            <ToggleButton value="price">Price</ToggleButton>
+        </ToggleButtonGroup>
+
+    );
+  }

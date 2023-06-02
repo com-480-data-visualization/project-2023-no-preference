@@ -1,5 +1,5 @@
 :root {
-    --bg-color: rgba(42, 71, 94, 1);
+    --bg-color: #E7EBF0;
     --fg-color: rgba(27, 40, 56, 1);
 }
 
@@ -102,7 +102,7 @@ header > h1 {
     --shawdow-color: whitesmoke;
     font-size: 9em !important;
     font-family: Connection, Arial, sans-serif !important;
-    color: var(--bg-color);
+    color: rgb(42, 71, 94);
     text-shadow: rgba(245, 245, 245, 1) 2px 2px, rgba(245, 245, 245, 1) -2px -2px;
     animation-name: appear-left;
     animation-duration: 1s;
