@@ -6,7 +6,7 @@ export default function NavBar() {
         <AppBar position='sticky' component='div'>
         <Toolbar variant="dense">
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Steamio
+                Steaming
             </Typography>
             <Button disableRipple color="inherit" 
                 onClick={() => {
