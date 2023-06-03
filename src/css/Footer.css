@@ -1,9 +1,18 @@
-.Footer-main {
-    display: flex;
-    align-items: top;
-    justify-content: center;
-    flex-direction: column;
-    font-size: calc(5px + 2vmin);
-    color: black;
-    margin-top: auto;
-  }
+:footer {
+  --padding: 15px;
+}
+
+footer {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  flex-direction: column;
+  font-size: calc(5px + 2vmin);
+  color: white;
+  margin-top: auto;
+  width: 100vw;
+  margin: 0;
+  margin-top: 15px;
+  padding: var(--padding);
+  background-color: rgb(48, 48, 48);
+}

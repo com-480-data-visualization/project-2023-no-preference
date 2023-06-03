@@ -40,15 +40,6 @@
   animation-fill-mode: backwards;
 }
 
-body {
-  display: block;
-  height: 100vh;
-  width: 100vw;
-  background-color: var(--bg-color);
-  margin: 0;
-  padding: 0;
-}
-
 .App-main {
   display: flex;
   align-items: top;
@@ -56,7 +47,8 @@ body {
   flex-direction: column;
   font-size: calc(5px + 2vmin);
   color: black;
-  margin-top: auto;
+  margin: 0;
+  margin-bottom: 15px;
 }
 
 .App-main-row {

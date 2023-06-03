@@ -1,9 +1,10 @@
+import FooterCard from '../Components/FooterCard';
 import '../css/Footer.css';
 
 function Footer() {
   return (
-    <footer className='Footer-main'>
-        hello
+    <footer>
+      <FooterCard />
     </footer>
   );
 }
