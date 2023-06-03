@@ -4,6 +4,7 @@
   justify-content: center;
   flex-direction: column;
   font-size: calc(5px + 2vmin);
+  background-color: #E7EBF0;
   color: black;
   margin: 0;
   margin-bottom: 15px;

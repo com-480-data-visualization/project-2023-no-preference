@@ -10,7 +10,6 @@ function newGame() {
   document.getElementsByTagName('body')[0].style.overflow = "scroll";
 }
 
-
 async function credits() {
   // +1000000 social credits GG
   newGame();
