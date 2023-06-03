@@ -12,6 +12,7 @@ import playercount from '../data/playercount.json';
 import { AppBar, Container, Toolbar, Button, Typography, Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Stack from '@mui/joy/Stack';
+import BubbleChart from '../Components/BubbleChart';
 
 
 function handleSlide(value){
@@ -49,6 +50,9 @@ function App() {
             </Stack>
           </Grid>
         </Grid> 
+      </Box>
+      <Box sx={{ m: '1rem', mt:10}}>
+        <BubbleChart />
       </Box>
     </main>
   );
