@@ -9,7 +9,7 @@ import { styled } from '@mui/material/styles';
 import { Container, Box, Button, Stack, ToggleButton } from '@mui/material';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-export default function Chart() {
+export default function Chart(props) {
     const canvasRef = useRef(null);
   
     useEffect(() => {
@@ -24,15 +24,16 @@ export default function Chart() {
       canvas.height = canvas.offsetHeight;
     }, []);
 
+
     return (
         <Container>
             <canvas id="myCanvas" ref={canvasRef}>
             </canvas>
             <Box sx={{ m: '0.5rem' }}>
                 <CoolSlider
-                    valueLabelDisplay="auto"
+                    valueLabelDisplay="off"
                     defaultValue={0}
-                    onChange={(event) => {}}
+                    onChange={(value) => {props.handleSlide(value.target.value)}}
                 />
             </Box>
             <ButtonRow />
