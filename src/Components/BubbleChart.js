@@ -12,6 +12,12 @@ import gamesData from '../data/gamesPopularity.json';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
+const chipColors = {};
+const colors = ['#FF0000', '#0000FF', '#1d556b', '#FF00FF', '#2a471a', 
+                '#808080', '#800000', '#808000', '#008000', '#800080',
+                '#008080', '#000080', '#000000', '#FFA500', '#A52A2A',
+                '#4c420d', '#FFD700', '#FF1493', '#4c2a06', '#5a0a75',];
+
 
 export default function BubbleChart(){
   const canvasRef = useRef(null);
@@ -59,11 +65,6 @@ export default function BubbleChart(){
 
 function CheckboxesTags() {
     const compamyNames = getTeams();
-    const chipColors = {};
-    const colors = ['#FF0000', '#0000FF', '#1d556b', '#FF00FF', '#2a471a', 
-                    '#808080', '#800000', '#808000', '#008000', '#800080',
-                    '#008080', '#000080', '#000000', '#FFA500', '#A52A2A',
-                    '#4c420d', '#FFD700', '#FF1493', '#4c2a06', '#5a0a75',];
 
     const getChipColor = (key) => {
     if (!chipColors[key]) {
