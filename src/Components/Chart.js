@@ -2,6 +2,7 @@ import './Chart.css';
 
 import { useRef, useEffect, useState } from 'react';
 import * as React from 'react';
+import * as d3 from 'd3';
 
 //MUI
 import Slider from '@mui/material/Slider';
@@ -11,6 +12,18 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function Chart(props) {
     const canvasRef = useRef(null);
+
+    var data1 = [
+        {group: "A", value: 4},
+        {group: "B", value: 16},
+        {group: "C", value: 8}
+     ];
+     
+     var data2 = [
+        {group: "A", value: 7},
+        {group: "B", value: 1},
+        {group: "C", value: 20}
+     ];
   
     useEffect(() => {
       const canvas = canvasRef.current;
@@ -22,17 +35,20 @@ export default function Chart(props) {
       canvas.style.minHeight = "70vh";
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
+      const chart = canvas.getContext('2d')
     }, []);
-
+    
 
     return (
         <Container>
-            <canvas id="myCanvas" ref={canvasRef}>
+            <canvas id="myCanvas" ref={canvasRef} >
             </canvas>
             <Box sx={{ m: '0.5rem' }}>
                 <CoolSlider
-                    valueLabelDisplay="off"
+                    valueLabelDisplay="auto"
                     defaultValue={0}
+                    max={Object.keys(props.date).length}
+                    scale={(value)=> props.date[value]}
                     onChange={(value) => {props.handleSlide(value.target.value)}}
                 />
             </Box>

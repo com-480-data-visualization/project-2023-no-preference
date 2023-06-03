@@ -20,21 +20,19 @@ function dataWithDate(data) {
 }
 
 function handleSlide(value){
-  console.log(Object.getOwnPropertyNames(topcount).length)
-  console.log(topcount.Action)
+
 }
 
 
 function App() {
-  handleSlide(1)
-
+  
   return (
     <main className='App-main'>
       <NavBar />
       <Box sx={{ m: '1rem' }}>
         <Grid container spacing={2}>
           <Grid item xs={9}>
-            <Chart handleSlide={handleSlide}/>
+            <Chart handleSlide={handleSlide} date={topcount.Time}/>
           </Grid>
           <Grid item xs={3}>
             <Stack spacing={2}>
