@@ -1,18 +1,5 @@
 import { Container, Typography, List, ListItem, Link } from '@mui/material';
 
-function listElems() {
-  let list = ["Jack Lau", "Luis Busta", "Ulysse Widmer"].map(n => {
-    return (
-      <ListItem>
-        <Link>
-          HELLO
-        </Link>
-      </ListItem>
-    );
-  });
-  return list;
-}
-
 export default function FooterCardDisplay (props) {
   return (
     <Container>
