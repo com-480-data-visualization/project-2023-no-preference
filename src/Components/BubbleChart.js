@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
 //MUI
-import { Container, Grid, Stack, Paper } from '@mui/material';
+import { Container, Grid, Stack, Card, CardContent, Typography, Chip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -12,7 +12,6 @@ import gamesData from '../data/gamesPopularity.json';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
-
 
 export default function BubbleChart(){
   const canvasRef = useRef(null);
@@ -39,9 +38,18 @@ export default function BubbleChart(){
     </Grid>
     <Grid item xs={3}>
         <Stack spacing={2}>
-            <Paper sx={{ p: 2, height: '100%' }} style={{ width: 313 }}>
-                <h3>Clarification</h3>
-            </Paper>
+            <Card sx={{ minWidth: 245, maxWidth: 345 }}>
+                <CardContent>
+                <Typography variant="h5" component="div">
+                    Clarification
+                </Typography>
+                    <Typography sx={{ fontSize: 14 }} color="body" gutterBottom>
+                        In the checkbox you select studios, not companies.
+                        If you write "Nintendo" for example all nintendo studios will be shown.
+                        Choose just "Nintendo" if you want all the studios to be included.
+                    </Typography>
+                </CardContent>
+            </Card>
             <CheckboxesTags />
         </Stack>
     </Grid>
@@ -51,13 +59,36 @@ export default function BubbleChart(){
 
 function CheckboxesTags() {
     const compamyNames = getTeams();
+    const chipColors = {};
+    const colors = ['#FF0000', '#0000FF', '#1d556b', '#FF00FF', '#2a471a', 
+                    '#808080', '#800000', '#808000', '#008000', '#800080',
+                    '#008080', '#000080', '#000000', '#FFA500', '#A52A2A',
+                    '#4c420d', '#FFD700', '#FF1493', '#4c2a06', '#5a0a75',];
+
+    const getChipColor = (key) => {
+    if (!chipColors[key]) {
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        chipColors[key] = colors[randomIndex];
+    }
+    return chipColors[key];
+    };
 
     return (
       <Autocomplete
         multiple
-        id="game-company-selector"
+        id="game-studio-selector"
         options={compamyNames}
         disableCloseOnSelect
+        renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
+              <Chip
+                key={index}
+                label={option.title}
+                style={{ backgroundColor: getChipColor(option.title), color: 'white' }}
+                {...getTagProps({ index })}
+              />
+            ))
+        }
         getOptionLabel={(option) => option.title}
         renderOption={(props, option, { selected }) => (
           <li {...props}>
@@ -72,7 +103,7 @@ function CheckboxesTags() {
         )}
         style={{ width: 345 }}
         renderInput={(params) => (
-          <TextField {...params} label="Game Companies" placeholder="Choose one or more" />
+          <TextField {...params} label="Select Studio/s" placeholder="Choose one or more" />
         )}
       />
     );
