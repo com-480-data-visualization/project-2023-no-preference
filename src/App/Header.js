@@ -18,6 +18,7 @@ const menuItems = [
 ]
 
 function Header() {
+  document.getElementsByTagName('body')[0].style.overflow = "hidden";
   return (
     <header>
       <Typography component='h1' variant='h1' align='center'>
