@@ -18,6 +18,7 @@ export default function Chart(props) {
   const Yaxis = useRef(null);
   const color = useRef({});
   const change = useRef(false);
+  const chart = useRef(undefined);
 
   //* update function
   function update(data) {
@@ -29,74 +30,75 @@ export default function Chart(props) {
       return a.value - b.value;
     });
 
-    var xmax = d3.max(data, function (d) {
-      return d.value;
-    });
+    var xmax = Math.ceil(temp[0].value);
+    var maxrange = xmax.toString().length + 1;
 
-    var svg = d3.select(divRef.current);
-    var u = svg.selectAll("rect").data(temp);
-
+    var svg = chart.current;
+    
     // X axis
-    var x = d3.scaleLinear().domain([0, 10000]).range([0, width]);
-
+    var x = d3
+    .scaleLog()
+    .domain([10, 10 ** maxrange])
+    .range([0, width])
+    .base(10);
+    
     // Y axis
     var y = d3
-      .scaleBand()
-      .domain(props.data.map((d) => d.group))
-      .range([0, height])
-      .padding(0.1);
-
-    x.domain([0, xmax]);
+    .scaleBand()
+    .domain(props.data.map((d) => d.group))
+    .range([0, height])
+    .padding(0.1);
+    
     Xaxis.current
-      .transition()
-      .duration(1000)
-      .call(d3.axisBottom(x))
-      .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
-
+    .transition()
+    .duration(1000)
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+    
     y.domain(
-      data.map(function (d) {
-        return d.group;
-      })
-    );
-    Yaxis.current.transition().duration(1000).call(d3.axisLeft(y));
+        data.map(function (d) {
+            return d.group;
+        })
+        );
+        Yaxis.current.transition().duration(1000).call(d3.axisLeft(y));
+        
+        var u = svg.selectAll("rect").data(temp);
 
-    u.enter()
-      .append("rect")
-      .merge(u)
-      .transition()
-      .duration(1000)
-      .attr("y", function (d) {
-        return y(d.group);
-      })
-      .attr("x", x(0))
-      .attr("height", y.bandwidth())
-      .attr("width", function (d) {
-        if (d.value == NaN) {
-          return 0;
-        }
-        return (width * d.value) / xmax;
-      })
-      .attr("fill", function (d) {
-        return color.current[d.group];
-      });
-
-    u.exit().remove();
-  }
-
-  const Update = React.useRef(update);
-
+        u
+        .enter()
+        .append("rect")
+        .merge(u)
+        .transition()
+        .duration(1000)
+        .attr("y", function (d) {
+            return y(d.group);
+        })
+        .attr("x", x(0))
+        .attr("height", y.bandwidth())
+        .attr("width", function (d) {
+            return x(d.value);
+        })
+        .attr("fill", function (d) {
+            return color.current[d.group];
+        });
+        
+        u.exit().remove();
+    }
+    
+    const Update = React.useRef(update);
+    
   //* Effect hook
   useEffect(() => {
     if (!change.current) {
-      Object.keys(props.data).forEach(
-        (element) =>
-          (color.current[props.data[element].group] =
-            "hsl(" + Math.random() * 360 + ",90%,75%)")
-      );
-
-      const test = divRef.current;
+        Object.keys(props.data).forEach(
+            (element) =>
+            (color.current[props.data[element].group] =
+                "hsl(" + Math.random() * 360 + ",90%,75%)")
+                );
+                
+                const test = divRef.current;
       d3.selectAll("svg").remove();
       test.style.width = "100%";
       test.style.height = "100%";
@@ -120,8 +122,10 @@ export default function Chart(props) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    
+
       // X axis
-      var x = d3.scaleLinear().domain([0, 1000000]).range([0, width]);
+      var x = d3.scaleLog().domain([10, 100]).range([0, width]).base(10);
       var xaxis = svg.append("g");
       xaxis
         .attr("transform", "translate(0," + height + ")")
@@ -141,16 +145,19 @@ export default function Chart(props) {
 
       Yaxis.current = yaxis;
 
+      chart.current = svg
+
       var u = svg.selectAll("rect").data(datadict.current);
 
-      u.enter()
+      u
+        .enter()
         .append("rect")
         .attr("x", x(0))
         .attr("y", function (d) {
           return y(d.group);
         })
         .attr("width", function (d) {
-          return x(d.value);
+          return width;
         })
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
@@ -159,12 +166,9 @@ export default function Chart(props) {
 
       Update.current(datadict.current);
 
-      change.current = true
-
-    }
-    else
-    {
-        Update.current(props.data)
+      change.current = true;
+    } else {
+      Update.current(props.data);
     }
   }, [props.data]);
 

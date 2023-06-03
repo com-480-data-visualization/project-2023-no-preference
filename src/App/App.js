@@ -22,9 +22,11 @@ function handleSlide(value) {
     if (key != "Time") {
       var temp = {};
       temp["group"] = key;
-      temp["value"] =
-        playercount[key][value] != null ? playercount[key][value] : 0;
-      result.push(temp);
+      temp["value"] = playercount[key][value] != null ? playercount[key][value] : 0;
+      if (temp.value != 0)
+      {
+        result.push(temp);
+      }
     }
   });
   return result;
@@ -77,7 +79,7 @@ function App() {
             />
           </Grid>
           <Grid item xs={3}>
-              
+
             {/* <Stack spacing={2}> */}
               <CardMUI title="Most played games" data={topplayer}/>
               {/* <CardMUI title="Play time" data={topengagement} /> */}
