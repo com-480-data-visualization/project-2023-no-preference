@@ -41,3 +41,7 @@
 .chart-demo-image {
   width: 100%;
 }
+
+.App-NavBar {
+  background-color: var(--header-fg-color) !important;
+}

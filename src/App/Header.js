@@ -7,15 +7,21 @@ function newGame() {
     document.getElementsByTagName(e)[0].classList.add("show-me");
     document.getElementsByTagName(e)[0].classList.remove("hide-me");
   });
-  document.getElementsByTagName('body')[0].style.overflowY = "scroll";
-  document.getElementsByTagName('body')[0].style.overflowX = "hidden";  
+  document.getElementsByTagName('body')[0].style.overflow = "scroll";
+}
+
+async function credits() {
+  // +1000000 social credits GG
+  newGame();
+  await new Promise(r => setTimeout(r, 500));
+  document.getElementsByTagName('footer')[0].scrollIntoView({behavior:'smooth'});
 }
 
 const menuItems = [
   {name: 'Start', fun: newGame}, 
   {name: 'Options', fun: null},
   {name: 'Process Book', fun: null},
-  {name: 'Credits', fun: null}
+  {name: 'Credits', fun: credits}
 ]
 
 function Header() {
