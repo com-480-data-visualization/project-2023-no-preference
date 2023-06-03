@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Divider } from '@mui/material';
+import { Typography, Container, Divider } from '@mui/material';
 import FooterCardDisplay from '../Components/FooterCardDisplay';
 import FooterCardMenu from '../Components/FooterCardMenu'; 
 import '../css/Footer.css';
@@ -24,20 +24,22 @@ let footerMenu2 = {
 
 function Footer() {
   return (
+    // <Footer>
     <footer>
-      <Box className="footer-row">
+      <Container className="footer-row">
         <FooterCardDisplay flexItem />
         <Divider orientation="vertical" flexItem light />
-        <FooterCardMenu flexItem menu={footerMenu1} />
+        <FooterCardMenu flexItem menu={footerMenu1} cloud />
         <Divider orientation="vertical" flexItem />
         <FooterCardMenu flexItem menu={footerMenu2} />
-      </Box>
+      </Container>
       <Container className="footer-bottom" disableGutters>
         <Typography>
           Steaming, a project made by team "no preference": Jack Lau, Luis Busta, Ulysse Widmer &ensp;-&ensp; COM-480: Data visualization, EPFL, Spring 2023
         </Typography>
       </Container>
-    </footer>
+      </footer>
+    // </Footer>
   );
 }
 

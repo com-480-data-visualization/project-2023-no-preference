@@ -14,7 +14,7 @@ footer {
 }
 
 .footer-row {
-  display: flex;
+  display: flex !important;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -55,4 +55,8 @@ footer {
 
 .footer-row hr {
   background-color: grey;
+}
+
+.footer-cloud-container svg:hover {
+  cursor: pointer;
 }
