@@ -2,6 +2,9 @@ import { Card, CardContent, CardActionArea, List, ListItem, ListItemIcon, ListIt
 
 export default function CardMUI (props) {
   const title = props.title;
+  const top1 = props.top1;
+  const top2 = props.top2;
+  const top3 = props.top1;
   return (
     <Card sx={{ maxWidth: 345, gap: 2, borderRadius: 2 }}>
       <CardActionArea>
@@ -15,7 +18,7 @@ export default function CardMUI (props) {
                 <img className="card-rank-icon" alt="rank 1 icon" src={process.env.PUBLIC_URL + "/images/rank1.png"} />
               </ListItemIcon>
               <ListItemText
-                primary="Single-line item"
+                primary='fuck!!!'
                 secondary='Secondary text'
               />
             </ListItem>

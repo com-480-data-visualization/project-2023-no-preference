@@ -8,6 +8,7 @@ import React, {useState} from "react";
 // dataset
 import topcount from '../data/topcount.json';
 import playercount from '../data/playercount.json';
+import gameinfo from '../data/applicationInformation.json'
 //MUI
 import { AppBar, Container, Toolbar, Button, Typography, Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
@@ -30,10 +31,38 @@ function handleSlide(value){
   return result
 }
 
+function changetopcount(value){
+  var result = []
+  var duplicate = []
+  Object.keys(topcount).forEach(
+    element => {
+      if ((element != 'Time') && !(element.includes('_id'))) {
+        if (!duplicate.includes(topcount[element + "_id"][value])) {
+          var temp = {}
+          temp['id'] = topcount[element + "_id"][value]
+          temp['player'] = topcount[element][value]
+          result.push(temp)
+          duplicate.push(topcount[element + "_id"][value])
+        }
+      }
+    }
+  )
+  result = result.sort(function(b,a){
+    return a.player - b.player
+})
+
+  
+  result = result.slice(0,2)
+  result.forEach(dict =>{
+    dict
+  })
+}
+
 
 function App() {
-  const [date, setdate] = React.useState(0)
   const [data, setdata] = React.useState(handleSlide(0))
+  const [topplayer, setcount] = React.useState(changetopcount(0))
+  const [topengagement, setengagement] = React.useState(changetopcount(0))
 
   return (
     <main className='App-main'>
@@ -41,12 +70,12 @@ function App() {
       <Box sx={{ m: '1rem' }}>
         <Grid container spacing={2}>
           <Grid item xs={9}>
-            <Chart handleSlide={handleSlide} date={playercount.Time} changeDate={(value)=>setdata(handleSlide(value))} data={data}/>
+            <Chart handleSlide={handleSlide} date={playercount.Time} changeDate={(value)=>{setdata(handleSlide(value));setcount(changetopcount(value));}} data={data}/>
           </Grid>
           <Grid item xs={3}>
             <Stack spacing={2}>
-              <CardMUI title="Player count"/>
-              <CardMUI title="Play time"/>
+              <CardMUI title="Player count" data={topplayer}/>
+              <CardMUI title="Play time" data={topengagement}/>
             </Stack>
           </Grid>
         </Grid> 

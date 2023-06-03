@@ -147,6 +147,8 @@ export default function Chart(props) {
     .attr("fill", function(d){return color.current[d.group]})
  
     Update.current(datadict.current)
+
+    console.log('component updated')
   
     }, []);
     
