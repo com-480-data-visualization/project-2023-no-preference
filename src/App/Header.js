@@ -3,9 +3,12 @@ import { Button, List, ListItem, Typography } from '@mui/material';
 
 function newGame() {
   document.getElementsByTagName('header')[0].className = "hide-me";
-  document.getElementsByTagName('footer')[0].className = "hide-me";
-  document.getElementsByTagName('main')[0].className = "show-me";
-  //document.getElementsByTagName('body')[0].style.overflow = "scroll";  
+  ["main", "footer"].forEach(e => {
+    document.getElementsByTagName(e)[0].classList.add("show-me");
+    document.getElementsByTagName(e)[0].classList.remove("hide-me");
+  });
+  document.getElementsByTagName('body')[0].style.overflowY = "scroll";
+  document.getElementsByTagName('body')[0].style.overflowX = "hidden";  
 }
 
 const menuItems = [
@@ -16,6 +19,7 @@ const menuItems = [
 ]
 
 function Header() {
+  document.getElementsByTagName('body')[0].style.overflow = "hidden";
   return (
     <header>
       <Typography component='h1' variant='h1' align='center'>

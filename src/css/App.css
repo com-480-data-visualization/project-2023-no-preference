@@ -1,54 +1,3 @@
-:root {
-  --bg-color: #E7EBF0;
-  --fg-color: #E7EBF0;
-}
-
-@keyframes disappear-down {
-  0% {
-    height: 0;
-    padding: 0;
-  }
-  100% {
-    
-  }
-}
-
-@keyframes appear-up {
-  0% {
-    height: 0;
-    padding: 0;
-  }
-  100% {
-    height: 100%;
-    padding: 0;
-  }
-}
-
-.hide-me {
-  animation-name: disappear-down;
-  animation-duration: 1s;
-  animation-iteration-count: 1;
-  overflow: hidden;
-  animation-fill-mode: forwards;
-}
-
-.show-me {
-  animation-name: appear-up;
-  animation-duration: 1s;
-  animation-iteration-count: 1; 
-  overflow: hidden;
-  animation-fill-mode: backwards;
-}
-
-body {
-  display: block;
-  height: 100vh;
-  width: 100vw;
-  background-color: var(--bg-color);
-  margin: 0;
-  padding: 0;
-}
-
 .App-main {
   display: flex;
   align-items: top;
@@ -56,7 +5,8 @@ body {
   flex-direction: column;
   font-size: calc(5px + 2vmin);
   color: black;
-  margin-top: auto;
+  margin: 0;
+  margin-bottom: 15px;
 }
 
 .App-main-row {
