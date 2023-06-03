@@ -3,11 +3,6 @@
     --header-fg-color: rgb(21, 31, 44);
 }
 
-@font-face {
-    font-family: 'Connection';
-    src: local('Connection'), url(../assets/ConnectionIi-2wj8.otf), format('opentype');
-}
-
 header {
     height: 100vh;
     display: flex;

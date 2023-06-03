@@ -1,8 +1,12 @@
-:html {
+:root {
   --bg-color: #E7EBF0;
   --fg-color: #E7EBF0;
 }
 
+@font-face {
+  font-family: 'Connection';
+  src: local('Connection'), url(../assets/ConnectionIi-2wj8.otf), format('opentype');
+}
 
 body {
   display: block;
@@ -13,12 +17,26 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.logo-inline {
+  --shadow-size: 3px;
+  --shawdow-color: whitesmoke;
+  font-size: 1.5em !important;
+  font-family: Connection, Arial, sans-serif !important;
+  color: rgb(42, 71, 94);
+  text-shadow: rgba(245, 245, 245, 1) 1px 1px, rgba(245, 245, 245, 1) -1px -1px;
+}
+
+/* -------------- */
+/* TOGGLE CLASSES */
+/* -------------- */
 
 .hide-me {
   animation-name: disappear-up;
@@ -34,7 +52,6 @@ code {
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
 }
-
 
 /* ------------------- */
 /* ANIMATION FUNCTIONS */
