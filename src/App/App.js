@@ -21,7 +21,7 @@ function handleSlide(value){
       if (key != "Time"){
         var temp = {}
         temp["group"] = key
-        temp["value"] = playercount[key][value]
+        temp["value"] = (playercount[key][value] != null) ? playercount[key][value] : 0
         result.push(temp)
       }
     }
