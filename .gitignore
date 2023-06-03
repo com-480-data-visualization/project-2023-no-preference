@@ -47,3 +47,5 @@ yarn-error.log*
 
 # dataset
 data
+**/yarn.lock
+**/package-lock.json

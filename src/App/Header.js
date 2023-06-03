@@ -8,6 +8,7 @@ function newGame() {
     document.getElementsByTagName(e)[0].classList.remove("hide-me");
   });
   document.getElementsByTagName('body')[0].style.overflow = "scroll";
+  document.getElementsByTagName('body')[0].style.overflowX = "hidden";
 }
 
 async function credits() {
