@@ -1,6 +1,5 @@
 import { List, ListItem, Typography, Link,  Container } from '@mui/material';
 import WordCloud from 'react-d3-cloud';
-// https://github.com/Yoctol/react-d3-cloud
 
 let v = 5000;
 
