@@ -2,14 +2,13 @@ import '../css/App.css';
 import Chart from '../Components/Chart';
 import CardMUI from '../Components/CardMUI';
 import NavBar from '../Components/NavBar';
-import React, {useState} from "react";
+import React from "react";
 
 
 // dataset
-import topcount from '../data/topcount.json';
 import playercount from '../data/playercount.json';
 //MUI
-import { AppBar, Container, Toolbar, Button, Typography, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Stack from '@mui/joy/Stack';
 import BubbleChart from '../Components/BubbleChart';

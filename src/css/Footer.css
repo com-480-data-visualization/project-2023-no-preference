@@ -57,6 +57,10 @@ footer {
   background-color: grey;
 }
 
-.footer-cloud-container svg:hover {
+.footer-row svg text:hover {
   cursor: pointer;
+}
+
+.footer-row h5 {
+  color: var(--fg-color);
 }

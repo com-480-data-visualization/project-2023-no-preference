@@ -2,6 +2,8 @@ import { Typography, Container, Divider } from '@mui/material';
 import FooterCardDisplay from '../Components/FooterCardDisplay';
 import FooterCardMenu from '../Components/FooterCardMenu'; 
 import '../css/Footer.css';
+import React from 'react';
+
 
 let footerMenu1 = {
   title: "Tech. stack and sources:",
@@ -24,7 +26,6 @@ let footerMenu2 = {
 
 function Footer() {
   return (
-    // <Footer>
     <footer>
       <Container className="footer-row">
         <FooterCardDisplay flexItem />
@@ -39,7 +40,6 @@ function Footer() {
         </Typography>
       </Container>
       </footer>
-    // </Footer>
   );
 }
 
