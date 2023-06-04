@@ -124,7 +124,7 @@ export default function Chart(props) {
                 );
                 
                 const test = divRef.current;
-      d3.selectAll("svg").remove();
+      d3.select(test).selectAll("svg").remove();
       test.style.width = "100%";
       test.style.height = "100%";
       test.style.backgroundColor = "white";
