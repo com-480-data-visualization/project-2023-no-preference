@@ -1,15 +1,11 @@
-import "./Chart.css";
-
 import { useRef, useEffect } from "react";
 import * as React from "react";
 import * as d3 from "d3";
-import ReactDOM from 'react-dom';
 
 //MUI
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import { Container, Box, ToggleButton, Typography } from "@mui/material";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { Container, Box } from "@mui/material";
 import topcount from "../data/topcount.json";
 import gameinfo from "../data/gameinfo.json";
 import gamedesc from "../data/games-desc.json";
@@ -19,6 +15,32 @@ import gamedesc from "../data/games-desc.json";
 const TRANS_TIME = 150;
 const BAR_CHART_ID = "test";
 const POPUP_ID = "poppy";
+
+function popUp(event, dataPoint) {
+  let root = document.getElementById("root");
+  let mouseX = d3.pointer(event, root)[0];
+  let mouseY = d3.pointer(event, root)[1];
+  let poppy = document.getElementById("poppy");
+  poppy.style.left = mouseX+"px";
+  poppy.style.top = mouseY+"px";
+  poppy.style.display = "block";
+  var date = document.getElementById("slider-value").textContent;
+  var i = 0;
+  while (topcount["Time"][i] !== date) {
+    i += 1;
+  }
+  let app_id = topcount[dataPoint.group + "_id"][i];
+  let app_name = gameinfo["name"][app_id];
+  let app_desc = gamedesc[app_id];
+
+  poppy.innerHTML = "<h3> Top 1: "+app_name+"</h3>"+
+  "<p>"+app_desc+"</p>";
+}
+
+function popDown() {
+  let poppy = document.getElementById("poppy");
+  poppy.style.display = "none";
+}
 
 
 export default function Chart(props) {
@@ -32,9 +54,8 @@ export default function Chart(props) {
 
   //* update function
   function update(data) {
-    var margin = { top: 30, right: 30, bottom: 50, left: 110 },
-      width = test.width * 0.8,
-      height = test.height * 0.9;
+    let width = test.width * 0.8;
+    let height = test.height * 0.9;
 
     var temp = data.sort(function (b, a) {
       return a.value - b.value;
@@ -93,35 +114,10 @@ export default function Chart(props) {
       })
       .attr("fill", function (d) {
         return color.current[d.group];
-      })
-      .attr("id", (d) => {
-        return Math.round(y(d.group));
       });
 
-      
-      u.on("click", (e, d) => {
-        let root = document.getElementById("root");
-        let mouseX = d3.pointer(e, root)[0];
-        let mouseY = d3.pointer(e, root)[1];
-        let poppy = document.getElementById("poppy");
-        poppy.style.left = mouseX+"px";
-        poppy.style.top = mouseY+"px";
-        poppy.style.display = "block";
-        var date = document.getElementById("slider-value").textContent;
-        var i = 0;
-        while (topcount["Time"][i] != date) {
-          i += 1;
-        }
-        let app_id = topcount[d.group + "_id"][i];
-        let app_name = gameinfo["name"][app_id];
-        let app_desc = gamedesc[app_id];
-
-        poppy.innerHTML = "<h3>"+app_name+"</h3>"+
-        "<p>"+app_desc+"</p>";
-        
-      });
-
-      u.exit().remove()
+      u.on("mouseout", () => popDown());
+      u.on("mousemove", (e, d) => popUp(e, d));
   }
 
   const Update = React.useRef(update);
@@ -137,12 +133,6 @@ export default function Chart(props) {
                 
                 const test = divRef.current;
       d3.select(test).selectAll("svg").remove();
-      test.style.width = "100%";
-      test.style.height = "100%";
-      test.style.backgroundColor = "white";
-      test.style.borderRadius = "10px";
-      test.style.boxShadow = "0px 1px 3px -1.5px rgba(0,0,0,0.75)";
-      test.style.minHeight = "70vh";
       test.width = test.offsetWidth;
       test.height = test.offsetHeight;
 
@@ -200,6 +190,7 @@ export default function Chart(props) {
         .attr("fill", function (d) {
           return color.current[d.group];
         });
+        u.on("mousemove", (e, d) => popUp(e, d));
 
       Update.current(datadict.current);
 
@@ -211,8 +202,12 @@ export default function Chart(props) {
 
   return (
     <Container>
+      
       <div id={BAR_CHART_ID} ref={divRef}>
-        <span id="title">Player count by categories</span>
+        <span class="chart-title-row">
+          <span id="title">Player count by categories for the date</span>
+          <span id="slider-value">14-12-2017</span>
+        </span>
       </div>
       <div id={POPUP_ID}></div>
       <Box sx={{ m: "0.5rem" }}>
@@ -234,7 +229,6 @@ export default function Chart(props) {
             alignItems : 'center',
             justifyContent : 'center'
         }}>
-      <span id="slider-value">{props.date[0]}</span>
         </div>
     </Container>
   );
@@ -282,38 +276,3 @@ const CoolSlider = styled(Slider)({
     },
   },
 });
-
-/**
- * The row with the four buttons
- * @todo: Make the buttons show the different charts
- */
-function ButtonRow() {
-  const [alignment, setAlignment] = React.useState("playerCount");
-
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
-
-  return (
-    <Container className="chart-buttons-container">
-    <ToggleButtonGroup
-      color="primary"
-      value={alignment}
-      exclusive
-      onChange={handleChange}
-      aria-label="Platform"
-      alignItems="center"
-      justifyContent="center"
-      flexItem
-    >
-      {/* <ToggleButton value="playerCount">Player Count</ToggleButton> */}
-      {/* <ToggleButton value="playedTime">Player Gain</ToggleButton> */}
-      {/* <ToggleButton value="engagement">Online Percentage</ToggleButton> */}
-      {/* <ToggleButton value="price">Price</ToggleButton> */}
-    </ToggleButtonGroup>
-      <Typography flexItem>
-        <span id="slider-value">14-12-2017</span>
-      </Typography>
-    </Container>
-  );
-}

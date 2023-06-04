@@ -1,6 +1,8 @@
 :root {
-  --bg-color: #E7EBF0;
-  --fg-color: #E7EBF0;
+  --bg-color: #1b2838;
+  --fg-color: #2a475e;
+  --txt-color: #bdc1c5;
+  --dark-txt-color: grey;
 }
 
 @font-face {
@@ -27,11 +29,11 @@ code {
 
 .logo-inline {
   --shadow-size: 3px;
-  --shawdow-color: whitesmoke;
+  --shawdow-color: var(--txt-color);
   font-size: 1.5em !important;
   font-family: Connection, Arial, sans-serif !important;
-  color: rgb(42, 71, 94);
-  text-shadow: rgba(245, 245, 245, 1) 1px 1px, rgba(245, 245, 245, 1) -1px -1px;
+  color: var(--fg-color);
+  text-shadow: var(--txt-color) 1px 1px, var(--txt-color) -1px -1px;
 }
 
 /* -------------- */
