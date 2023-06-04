@@ -17,6 +17,7 @@ Gamers! 🕹️
 
 For our deployment:
 
+- You can find the whole website source code in [website](https://github.com/com-480-data-visualization/project-2023-no-preference/tree/website) branch
 - We use `gh-pages` as an automated deploy branch that contains the minified builds
 
 To run our project locally, you need to do:
