@@ -41,7 +41,11 @@ function Header() {
             <ListItem>
               <Typography component='h2' variant='h2' align='center'>
                 <Button disableRipple onClick={item.fun}>
-                  {item.name}
+                  {item.name == "Options" && (
+                    <a href="https://www.youtube.com/watch?v=o-YBDTqX_ZU" target="_blank">Options</a>
+                  ) || item.name == "Process Book" && (
+                    <a href="https://github.com/com-480-data-visualization/project-2023-no-preference/blob/website/process_book.pdf" target="_blank">Process Book</a>
+                  ) || item.name}
                 </Button>
               </Typography>
             </ListItem>

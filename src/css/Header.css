@@ -69,3 +69,27 @@ header > h1 {
         var(--sc) calc(-1 * var(--ss)) calc(-1 * var(--ss));
     background-color: var(--bg-color);
 }
+
+header a {
+    --ss: 2px; /* shadow size */
+    --sc: rgba(0,0,0,0.5); /* shadow color */
+    font-size: 0.7em;
+    color: var(--fg-color);
+    text-shadow: 
+        var(--sc) calc(var(--ss)) calc(var(--ss)),
+        var(--sc) calc(-1 * var(--ss)) calc(var(--ss)),
+        var(--sc) calc(var(--ss)) calc(-1 * var(--ss)),
+        var(--sc) calc(-1 * var(--ss)) calc(-1 * var(--ss));
+    text-decoration: none;
+    font-size: 1em;
+}
+.header-menu a:hover {
+    --ss: 1px; /* shadow size */
+    --sc: var(--txt-color); /* shadow color */
+    text-shadow: 
+        var(--sc) calc(var(--ss)) calc(var(--ss)),
+        var(--sc) calc(-1 * var(--ss)) calc(var(--ss)),
+        var(--sc) calc(var(--ss)) calc(-1 * var(--ss)),
+        var(--sc) calc(-1 * var(--ss)) calc(-1 * var(--ss));
+    background-color: var(--bg-color);
+}
