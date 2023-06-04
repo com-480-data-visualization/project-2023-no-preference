@@ -30,7 +30,7 @@ export default function CardMUI (props) {
               </ListItemIcon>
               <ListItemText
                 primary={top1 !== undefined ? top1.id : 'loading'}
-                secondary={top1 !== undefined ? top1.player : 'loading'}
+                secondary={top1 !== undefined ? top1.player+' players' : 'loading'}
               />
             </ListItem>
             <ListItem>
@@ -39,7 +39,7 @@ export default function CardMUI (props) {
               </ListItemIcon>
               <ListItemText
                 primary={top2 !== undefined ? top2.id : 'loading'}
-                secondary={top2 !== undefined ? top2.player : 'loading'}
+                secondary={top2 !== undefined ? top2.player+' players' : 'loading'}
               />
             </ListItem>
             <ListItem>
@@ -48,7 +48,7 @@ export default function CardMUI (props) {
               </ListItemIcon>
               <ListItemText
                 primary={top3 !== undefined ? top3.id : 'loading'}
-                secondary={top3 !== undefined ? top3.player : 'loading'}
+                secondary={top3 !== undefined ? top3.player+' players' : 'loading'}
               />
             </ListItem>
           </List>

@@ -11,19 +11,12 @@ import { styled } from "@mui/material/styles";
 import { Container, Box, ToggleButton, Typography } from "@mui/material";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-import axios from 'axios';
 import SteamGameDetails from "./SteamGameDetails";
 
 
 const TRANS_TIME = 150;
 const BAR_CHART_ID = "test";
 const POPUP_ID = "poppy";
-
-async function getList() {
-  return fetch('https://store.steampowered.com/api/appdetails?appids=238960')
-    .then(data => data.json())
-}
-
 
 
 export default function Chart(props) {
@@ -33,6 +26,7 @@ export default function Chart(props) {
   const Yaxis = useRef(null);
   const color = useRef({});
   const change = useRef(false);
+  const chart = useRef(undefined);
 
   //* update function
   function update(data) {
@@ -44,16 +38,17 @@ export default function Chart(props) {
       return a.value - b.value;
     });
 
-    var xmax = d3.max(data, function (d) {
-      return d.value;
-    });
+    var xmax = Math.ceil(temp[0].value);
+    var maxrange = xmax.toString().length + 1;
 
-    var svg = d3.select(divRef.current);
-
+    var svg = chart.current;
+    
     // X axis
-    var x = d3.scaleLinear()
+    var x = d3.scaleLog()
+      .domain([10, 10 ** maxrange])
       .range([0, width])
-      .domain([0, xmax]);
+      .base(10);
+      
     Xaxis.current
       .transition()
       .duration(TRANS_TIME)
@@ -114,23 +109,22 @@ export default function Chart(props) {
         poppy.style.top = mouseY+"px";
         poppy.style.display = "block";
         console.log(d.group);
-        console.log(getList());
         ReactDOM.render(<SteamGameDetails />, poppy);
       });
   }
 
   const Update = React.useRef(update);
-
+    
   //* Effect hook
   useEffect(() => {
     if (!change.current) {
-      Object.keys(props.data).forEach(
-        (element) =>
-          (color.current[props.data[element].group] =
-            "hsl(" + Math.random() * 360 + ",90%,75%)")
-      );
-
-      const test = divRef.current;
+        Object.keys(props.data).forEach(
+            (element) =>
+            (color.current[props.data[element].group] =
+                "hsl(" + Math.random() * 360 + ",90%,75%)")
+                );
+                
+                const test = divRef.current;
       d3.selectAll("svg").remove();
       test.style.width = "100%";
       test.style.height = "100%";
@@ -154,10 +148,10 @@ export default function Chart(props) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    
+
       // X axis
-      var x = d3.scaleLinear()
-        .domain([0, 1000000])
-        .range([0, width]);
+      var x = d3.scaleLog().domain([10, 100]).range([0, width]).base(10);
       var xaxis = svg.append("g");
       xaxis
         .attr("transform", "translate(0," + height + ")")
@@ -177,16 +171,19 @@ export default function Chart(props) {
 
       Yaxis.current = yaxis;
 
+      chart.current = svg
+
       var u = svg.selectAll("rect").data(datadict.current);
 
-      u.enter()
+      u
+        .enter()
         .append("rect")
         .attr("x", x(0))
         .attr("y", function (d) {
           return y(d.group);
         })
         .attr("width", function (d) {
-          return x(d.value);
+          return width;
         })
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
@@ -195,12 +192,9 @@ export default function Chart(props) {
 
       Update.current(datadict.current);
 
-      change.current = true
-
-    }
-    else
-    {
-        Update.current(props.data)
+      change.current = true;
+    } else {
+      Update.current(props.data);
     }
   }, [props.data]);
 
