@@ -55,13 +55,17 @@
   display: none;
   background-color: lightslategray;
   position: absolute;
-  height: 250px;
-  width: 200px;
   border-radius: 15px;
+  padding: 15px;
+  max-width: 400px;
 }
 
 #poppy h3 {
   text-align: center;
+}
+
+#poppy p {
+  font-size: 0.8em;
 }
 
 .chart-buttons-container {

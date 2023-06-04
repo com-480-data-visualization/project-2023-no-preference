@@ -12,7 +12,7 @@ import { Container, Box, ToggleButton, Typography } from "@mui/material";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import topcount from "../data/topcount.json";
 import gameinfo from "../data/gameinfo.json";
-import gamepop from "../data/gamesPopularity.json";
+import gamedesc from "../data/games-desc.json";
 
 
 
@@ -114,8 +114,7 @@ export default function Chart(props) {
         }
         let app_id = topcount[d.group + "_id"][i];
         let app_name = gameinfo["name"][app_id];
-        let app_desc = gamepop.filter(e => e["Title"] == app_name);
-        console.log(app_desc);
+        let app_desc = gamedesc[app_id];
 
         poppy.innerHTML = "<h3>"+app_name+"</h3>"+
         "<p>"+app_desc+"</p>";
