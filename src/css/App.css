@@ -53,10 +53,15 @@
 
 #poppy {
   display: none;
-  background-color: pink;
+  background-color: lightslategray;
   position: absolute;
-  height: 200px;
-  width: 100px;
+  height: 250px;
+  width: 200px;
+  border-radius: 15px;
+}
+
+#poppy h3 {
+  text-align: center;
 }
 
 .chart-buttons-container {
@@ -67,7 +72,8 @@
 
 #slider-value {
   display: block;
-  border: 1px solid gray;
+  border: 
+  1px solid gray;
   padding: 5px;
   background-color: white;
 }

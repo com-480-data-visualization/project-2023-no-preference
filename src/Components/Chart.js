@@ -10,8 +10,10 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { Container, Box, ToggleButton, Typography } from "@mui/material";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import topcount from "../data/topcount.json";
+import gameinfo from "../data/gameinfo.json";
+import gamepop from "../data/gamesPopularity.json";
 
-import SteamGameDetails from "./SteamGameDetails";
 
 
 const TRANS_TIME = 150;
@@ -108,8 +110,19 @@ export default function Chart(props) {
         poppy.style.left = mouseX+"px";
         poppy.style.top = mouseY+"px";
         poppy.style.display = "block";
-        console.log(d.group);
-        ReactDOM.render(<SteamGameDetails />, poppy);
+        var date = document.getElementById("slider-value").textContent;
+        var i = 0;
+        while (topcount["Time"][i] != date) {
+          i += 1;
+        }
+        let app_id = topcount[d.group + "_id"][i];
+        let app_name = gameinfo["name"][app_id];
+        let app_desc = gamepop.filter(e => e["Title"] == app_name);
+        console.log(app_desc);
+
+        poppy.innerHTML = "<h3>"+app_name+"</h3>"+
+        "<p>"+app_desc+"</p>";
+        
       });
   }
 
@@ -295,7 +308,7 @@ function ButtonRow() {
       <ToggleButton value="price">Price</ToggleButton>
     </ToggleButtonGroup>
       <Typography flexItem>
-        <span id="slider-value"></span>
+        <span id="slider-value">14-12-2017</span>
       </Typography>
     </Container>
   );
