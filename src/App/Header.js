@@ -12,7 +12,7 @@ function newGame() {
 }
 
 async function credits() {
-  // +1000000 social credits GG
+  // +1000000 social credits GG, XD
   newGame();
   await new Promise(r => setTimeout(r, 500));
   document.getElementsByTagName('footer')[0].scrollIntoView({behavior:'smooth'});
