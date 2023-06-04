@@ -1,15 +1,23 @@
 import "./Chart.css";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import * as React from "react";
 import * as d3 from "d3";
+import ReactDOM from 'react-dom';
 
 //MUI
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import { Container, Box, Button, Stack, ToggleButton } from "@mui/material";
+import { Container, Box, ToggleButton, Typography } from "@mui/material";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { element } from "prop-types";
+
+import SteamGameDetails from "./SteamGameDetails";
+
+
+const TRANS_TIME = 150;
+const BAR_CHART_ID = "test";
+const POPUP_ID = "poppy";
+
 
 export default function Chart(props) {
   const divRef = useRef(null);
@@ -36,58 +44,76 @@ export default function Chart(props) {
     var svg = chart.current;
     
     // X axis
-    var x = d3
-    .scaleLog()
-    .domain([10, 10 ** maxrange])
-    .range([0, width])
-    .base(10);
-    
+    var x = d3.scaleLog()
+      .domain([10, 10 ** maxrange])
+      .range([0, width])
+      .base(10);
+      
+    Xaxis.current
+      .transition()
+      .duration(TRANS_TIME)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+
     // Y axis
     var y = d3
-    .scaleBand()
-    .domain(props.data.map((d) => d.group))
-    .range([0, height])
-    .padding(0.1);
-    
-    Xaxis.current
-    .transition()
-    .duration(1000)
-    .call(d3.axisBottom(x))
-    .selectAll("text")
-    .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end");
-    
-    y.domain(
+      .scaleBand()
+      .domain(props.data.map((d) => d.group))
+      .range([0, height])
+      .padding(0.1)
+      .domain(
         data.map(function (d) {
-            return d.group;
+          return d.group;
         })
-        );
-        Yaxis.current.transition().duration(1000).call(d3.axisLeft(y));
-        
-        var u = svg.selectAll("rect").data(temp);
+      );
+    Yaxis.current
+      .transition()
+      .duration(TRANS_TIME)
+      .call(d3.axisLeft(y));
 
-        u
-        .enter()
-        .append("rect")
-        .merge(u)
-        .transition()
-        .duration(1000)
-        .attr("y", function (d) {
-            return y(d.group);
-        })
-        .attr("x", x(0))
-        .attr("height", y.bandwidth())
-        .attr("width", function (d) {
-            return x(d.value);
-        })
-        .attr("fill", function (d) {
-            return color.current[d.group];
-        });
-        
-        u.exit().remove();
-    }
-    
-    const Update = React.useRef(update);
+    // rectangles
+    var u = svg.selectAll("rect").data(temp);
+    u.enter()
+      .append("rect")
+      .merge(u)
+      .transition()
+      .duration(TRANS_TIME)
+      .attr("y", function (d) {
+        return y(d.group);
+      })
+      .attr("x", x(0))
+      .attr("height", y.bandwidth())
+      .attr("width", function (d) {
+        if (d.value == NaN) {
+          return 0;
+        }
+        return (width * d.value) / xmax;
+      })
+      .attr("fill", function (d) {
+        return color.current[d.group];
+      })
+      .attr("id", (d) => {
+        return Math.round(y(d.group));
+      });
+
+      
+      u.on("click", (e, d) => {
+        let root = document.getElementById("root");
+        let mouseX = d3.pointer(e, root)[0];
+        let mouseY = d3.pointer(e, root)[1];
+        let poppy = document.getElementById("poppy");
+        poppy.style.left = mouseX+"px";
+        poppy.style.top = mouseY+"px";
+        poppy.style.display = "block";
+        console.log(d.group);
+        ReactDOM.render(<SteamGameDetails />, poppy);
+      });
+  }
+
+  const Update = React.useRef(update);
     
   //* Effect hook
   useEffect(() => {
@@ -176,7 +202,9 @@ export default function Chart(props) {
     <Container>
       {/* <canvas id="myCanvas" ref={canvasRef} >
             </canvas> */}
-      <div id="test" ref={divRef}></div>
+      <div id={BAR_CHART_ID} ref={divRef}>
+      </div>
+      <div id={POPUP_ID}></div>
       <Box sx={{ m: "0.5rem" }}>
         <CoolSlider
           valueLabelDisplay="auto"
@@ -186,6 +214,7 @@ export default function Chart(props) {
           onChange={(value) => {
             props.handleSlide(value.target.value);
             props.changeDate(value.target.value);
+            document.getElementById("slider-value").textContent = props.date[value.target.value];
           }}
         />
             </Box>
@@ -255,6 +284,7 @@ function ButtonRow() {
   };
 
   return (
+    <Container className="chart-buttons-container">
     <ToggleButtonGroup
       color="primary"
       value={alignment}
@@ -263,11 +293,16 @@ function ButtonRow() {
       aria-label="Platform"
       alignItems="center"
       justifyContent="center"
+      flexItem
     >
       <ToggleButton value="playerCount">Player Count</ToggleButton>
       <ToggleButton value="playedTime">Player Gain</ToggleButton>
       <ToggleButton value="engagement">Online Percentage</ToggleButton>
       {/* <ToggleButton value="price">Price</ToggleButton> */}
     </ToggleButtonGroup>
+      <Typography flexItem>
+        <span id="slider-value"></span>
+      </Typography>
+    </Container>
   );
 }

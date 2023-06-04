@@ -14,7 +14,7 @@ class CustomWordCloud extends React.Component {
  
  componentDidMount(){
     setTimeout(() => {
-        const v = 5000;
+        const v = 4000;
         // List of words
         const words = [
             {text: "React", value: v, link: "https://react.dev/"},
@@ -28,6 +28,7 @@ class CustomWordCloud extends React.Component {
         ReactDOM.render(
             <WordCloud 
                 data={words}
+                height={400}
                 rotate={(word) => rot90()}
                 spiral="rectangular"
                 onWordClick={(event, d) => {
@@ -38,8 +39,8 @@ class CustomWordCloud extends React.Component {
                 }}
             />
         , cloudy);
-    }, 500);
- } 
+    }, 2000);
+ }
  
  render(){
   return (
