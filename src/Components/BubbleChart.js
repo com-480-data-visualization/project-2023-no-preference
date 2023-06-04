@@ -147,7 +147,7 @@ export default function BubbleChart() {
         .style("fill", function (d) {
           return chipColors[d.team];
         })
-        .style("opacity", "0.4")
+        .style("opacity", "0.7")
         .attr("stroke", "white")
         .style("stroke-width", "2px")
         .on("mouseover", showTooltip)
