@@ -21,6 +21,7 @@ export default function FooterCardMenu(props) {
                     <Link 
                       href={i.link}
                       target="_blank"
+                      rel="noopener noreferrer" 
                     >
                       {i.text}
                     </Link>
