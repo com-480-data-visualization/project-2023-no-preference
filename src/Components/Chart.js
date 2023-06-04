@@ -32,7 +32,7 @@ export default function Chart(props) {
 
   //* update function
   function update(data) {
-    var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+    var margin = { top: 30, right: 30, bottom: 50, left: 110 },
       width = test.width * 0.8,
       height = test.height * 0.9;
 
@@ -89,10 +89,7 @@ export default function Chart(props) {
       .attr("x", x(0))
       .attr("height", y.bandwidth())
       .attr("width", function (d) {
-        if (d.value == NaN) {
-          return 0;
-        }
-        return (width * d.value) / xmax;
+        return x(d.value)
       })
       .attr("fill", function (d) {
         return color.current[d.group];
@@ -124,6 +121,8 @@ export default function Chart(props) {
         "<p>"+app_desc+"</p>";
         
       });
+
+      u.exit().remove()
   }
 
   const Update = React.useRef(update);
@@ -138,7 +137,7 @@ export default function Chart(props) {
                 );
                 
                 const test = divRef.current;
-      d3.selectAll("svg").remove();
+      d3.select(test).selectAll("svg").remove();
       test.style.width = "100%";
       test.style.height = "100%";
       test.style.backgroundColor = "white";
@@ -148,7 +147,7 @@ export default function Chart(props) {
       test.width = test.offsetWidth;
       test.height = test.offsetHeight;
 
-      var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+      var margin = { top: 30, right: 30, bottom: 50, left: 110 },
         width = test.width * 0.8,
         height = test.height * 0.9;
 
@@ -213,14 +212,13 @@ export default function Chart(props) {
 
   return (
     <Container>
-      {/* <canvas id="myCanvas" ref={canvasRef} >
-            </canvas> */}
       <div id={BAR_CHART_ID} ref={divRef}>
+        <span id="title">Player count by categories</span>
       </div>
       <div id={POPUP_ID}></div>
       <Box sx={{ m: "0.5rem" }}>
         <CoolSlider
-          valueLabelDisplay="auto"
+          valueLabelDisplay="off"
           defaultValue={0}
           max={Object.keys(props.date).length - 1}
           scale={(value) => props.date[value]}
@@ -230,8 +228,15 @@ export default function Chart(props) {
             document.getElementById("slider-value").textContent = props.date[value.target.value];
           }}
         />
-      </Box>
-      <ButtonRow />
+            </Box>
+            
+        <div style={{
+            display : 'flex',
+            alignItems : 'center',
+            justifyContent : 'center'
+        }}>
+      <span id="slider-value">{props.date[0]}</span>
+        </div>
     </Container>
   );
 }
@@ -302,10 +307,10 @@ function ButtonRow() {
       justifyContent="center"
       flexItem
     >
-      <ToggleButton value="playerCount">Player Count</ToggleButton>
-      <ToggleButton value="playedTime">Played Time</ToggleButton>
-      <ToggleButton value="engagement">Engagement</ToggleButton>
-      <ToggleButton value="price">Price</ToggleButton>
+      {/* <ToggleButton value="playerCount">Player Count</ToggleButton> */}
+      {/* <ToggleButton value="playedTime">Player Gain</ToggleButton> */}
+      {/* <ToggleButton value="engagement">Online Percentage</ToggleButton> */}
+      {/* <ToggleButton value="price">Price</ToggleButton> */}
     </ToggleButtonGroup>
       <Typography flexItem>
         <span id="slider-value">14-12-2017</span>

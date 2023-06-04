@@ -1,4 +1,4 @@
-import { Card, CardContent, CardActionArea, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Card, CardContent, CardActionArea, List, ListItem, ListItemIcon, ListItemText, Typography, Divider } from '@mui/material';
 import { useEffect } from 'react';
 import * as React from "react";
 
@@ -11,18 +11,27 @@ export default function CardMUI (props) {
 
 
   useEffect(()=>{
-    settop1(props.data[0])
-    settop2(props.data[1])
-    settop3(props.data[2])
+    if (props.data != undefined)
+    {
+      settop1(props.data[0])
+      settop2(props.data[1])
+      settop3(props.data[2])
+    }
   }, [props.data])
 
   return (
     <Card sx={{ maxWidth: 345, gap: 2, borderRadius: 2 }}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography gutterBottom variant="h5" component="div"
+          style={{
+            display:'flex',
+            alignContent:'center',
+            justifyContent:'center'
+          }}>
             {title}
           </Typography>
+          <Divider/>
           <List>
             <ListItem>
               <ListItemIcon>
@@ -33,6 +42,7 @@ export default function CardMUI (props) {
                 secondary={top1 !== undefined ? top1.player+' players' : 'loading'}
               />
             </ListItem>
+            <Divider variant="inset" component="li" />
             <ListItem>
               <ListItemIcon>
                 <img className="card-rank-icon" alt="rank 2 icon" src={process.env.PUBLIC_URL + "/images/rank2.png"} />
@@ -42,6 +52,7 @@ export default function CardMUI (props) {
                 secondary={top2 !== undefined ? top2.player+' players' : 'loading'}
               />
             </ListItem>
+            <Divider variant="inset" component="li" />
             <ListItem>
               <ListItemIcon>
                 <img className="card-rank-icon" alt="rank 3 icon" src={process.env.PUBLIC_URL + "/images/rank3.png"} />
