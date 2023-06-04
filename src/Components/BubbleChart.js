@@ -26,25 +26,25 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 const chipColors = {};
 const colors = [
   "#FF0000",
-  "#0000FF",
-  "#1d556b",
-  "#FF00FF",
-  "#2a471a",
-  "#808080",
-  "#800000",
-  "#808000",
-  "#008000",
-  "#800080",
-  "#008080",
-  "#000080",
-  "#000000",
-  "#FFA500",
-  "#A52A2A",
-  "#4c420d",
+  "#79aa99",
+  "#ece67e",
+  "#bf77f6",
+  "#ffc0cb",
+  "#efc0fe",
+  "#ffa180",
+  "#fdfdfe",
+  "#9ab8c2",
+  "#98d98e",
+  "#aaffaa",
+  "#e3e7c4",
+  "#a58d7f",
+  "#fdee73",
+  "#f1ebda",
+  "#efc5b5",
   "#FFD700",
-  "#FF1493",
-  "#4c2a06",
-  "#5a0a75",
+  "#b7dadd",
+  "#a2cffe",
+  "#dae4ee",
 ];
 
 export default function BubbleChart() {
@@ -127,7 +127,7 @@ export default function BubbleChart() {
         .scaleLinear()
         .domain([0, 6000])
         .range([bubble.current.height * 0.9, 0]);
-      var z = d3.scaleLinear().domain([0, 5000]).range([0, 15]);
+      var z = d3.scaleLinear().domain([0, 5000]).range([0, 10]);
 
       chartsvg.current
         .append("g")
@@ -273,6 +273,7 @@ function CheckboxesTags(props) {
           <Chip
             key={index}
             label={option.title}
+            style={{ backgroundColor: getChipColor(option.title) }}
             {...getTagProps({ index })}
           />
         ))
