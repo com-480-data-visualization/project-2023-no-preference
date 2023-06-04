@@ -303,7 +303,8 @@ function CheckboxesTags(props) {
           placeholder="Choose one or more"
           sx={{
             backgroundColor: "#1b2838",
-            color: "#bdc1c5"
+            color: "#bdc1c5",
+            input: { color: '#bdc1c5' }
           }}
         />
       )}
