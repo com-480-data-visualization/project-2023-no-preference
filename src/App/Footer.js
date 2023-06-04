@@ -16,16 +16,12 @@ let footerMenu1 = {
 };
 
 let footerMenu2 = {
-	title: "Other links:",
-	menu: [
-		{ text: "Process Book", 
-      link: require("../process_book.pdf") },
-		{
-			text: "Screencast",
-			link: "https://www.youtube.com/watch?v=o-YBDTqX_ZU",
-		},
-	],
-};
+  title: "Other links:",
+  menu: [
+    {text: "Process Book", link: require("../process_book.pdf")},
+    {text: "Screencast", link: "https://www.youtube.com/watch?v=o-YBDTqX_ZU"}
+  ]
+}
 
 function Footer() {
 	return (
