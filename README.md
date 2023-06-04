@@ -11,6 +11,7 @@ We want to work on Steam public data, namely the time series of player count per
 ## 👨‍👩‍👧‍👦 Target audience
 
 Gamers! 🕹️
+And anyone with interest in the trends inside the videogame industry.
 
 
 ## 💻 Technical Setup
