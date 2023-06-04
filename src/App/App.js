@@ -7,6 +7,7 @@ import React from "react";
 //MUI
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Stack from '@mui/material/Stack'; //
 import BubbleChart from '../Components/BubbleChart';
 import "../css/App.css";
 
@@ -14,6 +15,8 @@ import "../css/App.css";
 import topcount from "../data/topcount.json";
 import playercount from "../data/playercount.json";
 import gameinfo from "../data/gameinfo.json";
+import gameStats from "../data/gameStats.json";
+import { element } from 'prop-types';
 
 
 function handleSlide(value) {
@@ -57,10 +60,27 @@ function changetopcount(value) {
   return result;
 }
 
+function changegain(value) {
+  var temp = playercount.Time[value].split('-')
+  var found = gameStats.find(element=> (element['year'] == temp[2] && element['month'] == temp[1]))
+  if (found != undefined)
+  {
+    return [
+      {'id':found['gain1_id'], 'player':Math.round(found['gain1'])},
+      {'id':found['gain2_id'], 'player':Math.round(found['gain2'])},
+      {'id':found['gain3_id'], 'player':Math.round(found['gain3'])}
+    ]
+  }
+  else{
+    return undefined
+  }
+
+}
+
 function App() {
   const [data, setdata] = React.useState(handleSlide(0));
   const [topplayer, setcount] = React.useState(changetopcount(0));
-  const [topengagement, setengagement] = React.useState(changetopcount(0));
+  const [playergain, setgain] = React.useState(changegain(0));
 
   return (
     <main className="App-main">
@@ -74,16 +94,16 @@ function App() {
               changeDate={(value) => {
                 setdata(handleSlide(value));
                 setcount(changetopcount(value));
+                setgain(changegain(value));
               }}
               data={data}
             />
           </Grid>
           <Grid item xs={3}>
-
-            {/* <Stack spacing={2}> */}
+            <Stack spacing={2}>
               <CardMUI title="Most played games" data={topplayer}/>
-              {/* <CardMUI title="Play time" data={topengagement} /> */}
-            {/* </Stack> */}
+              <CardMUI title="Player gained (monthly)" data={playergain} />
+            </Stack>
           </Grid>
         </Grid>
       </Box>

@@ -194,7 +194,7 @@ export default function Chart(props) {
             alignItems : 'center',
             justifyContent : 'center'
         }}>
-      <ButtonRow />
+      {/* <ButtonRow /> */}
         </div>
     </Container>
   );
