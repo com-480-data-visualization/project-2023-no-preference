@@ -188,8 +188,14 @@ export default function Chart(props) {
             props.changeDate(value.target.value);
           }}
         />
-      </Box>
+            </Box>
+        <div style={{
+            display : 'flex',
+            alignItems : 'center',
+            justifyContent : 'center'
+        }}>
       <ButtonRow />
+        </div>
     </Container>
   );
 }
@@ -259,9 +265,9 @@ function ButtonRow() {
       justifyContent="center"
     >
       <ToggleButton value="playerCount">Player Count</ToggleButton>
-      <ToggleButton value="playedTime">Played Time</ToggleButton>
-      <ToggleButton value="engagement">Engagement</ToggleButton>
-      <ToggleButton value="price">Price</ToggleButton>
+      <ToggleButton value="playedTime">Player Gain</ToggleButton>
+      <ToggleButton value="engagement">Online Percentage</ToggleButton>
+      {/* <ToggleButton value="price">Price</ToggleButton> */}
     </ToggleButtonGroup>
   );
 }
