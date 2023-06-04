@@ -5,7 +5,7 @@ import NavBar from '../Components/NavBar';
 import React from "react";
 
 //MUI
-import { Box } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Stack from '@mui/material/Stack'; //
 import BubbleChart from '../Components/BubbleChart';
