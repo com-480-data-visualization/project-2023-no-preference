@@ -216,6 +216,9 @@ export default function Chart(props) {
             props.changeDate(value.target.value);
             document.getElementById("slider-value").textContent = props.date[value.target.value];
           }}
+          onLoad={(value)=>{
+            document.getElementById("slider-value").textContent = props.date[value.target.value];
+          }}
         />
             </Box>
         <div style={{
@@ -223,7 +226,7 @@ export default function Chart(props) {
             alignItems : 'center',
             justifyContent : 'center'
         }}>
-      {/* <ButtonRow /> */}
+      <ButtonRow />
         </div>
     </Container>
   );
@@ -295,9 +298,9 @@ function ButtonRow() {
       justifyContent="center"
       flexItem
     >
-      <ToggleButton value="playerCount">Player Count</ToggleButton>
-      <ToggleButton value="playedTime">Player Gain</ToggleButton>
-      <ToggleButton value="engagement">Online Percentage</ToggleButton>
+      {/* <ToggleButton value="playerCount">Player Count</ToggleButton> */}
+      {/* <ToggleButton value="playedTime">Player Gain</ToggleButton> */}
+      {/* <ToggleButton value="engagement">Online Percentage</ToggleButton> */}
       {/* <ToggleButton value="price">Price</ToggleButton> */}
     </ToggleButtonGroup>
       <Typography flexItem>
