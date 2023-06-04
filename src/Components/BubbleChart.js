@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import ReactDOM from "react-dom";
+import './BubbleChart.css';
 
 //MUI
 import {
@@ -49,11 +50,111 @@ const colors = [
 export default function BubbleChart() {
   const bubble = useRef(null);
   const bubblechanged = useRef(false);
+  const chartsvg = useRef(undefined);
+  const [data, setdata] = React.useState(undefined);
 
-  //TODO: implement later
-  function bubblechart(data) {
+  function UpdateChart(value) {
+    if (value != undefined) {
+      chartsvg.current.selectAll("circle").remove();
+      chartsvg.current.selectAll(".tooltip").remove();
+
+      var data = [];
+      gamesData.forEach((element) => {
+        value[0].forEach((studio) => {
+          if (element.Team.includes(studio.title)) {
+            var review = element["Number of Reviews"];
+            var wish = element["Wishlist"];
+            wish =
+              typeof wish == "string"
+                ? parseFloat(wish.slice(0, -1)) * 1000
+                : wish;
+            review =
+              typeof review == "string"
+                ? parseFloat(review.slice(0, -1)) * 1000
+                : review;
+            data.push({
+              "team": studio.title,
+              "name": element.Title,
+              "rate": element.Rating,
+              "review": review,
+              "wish": wish,
+            });
+          }
+        });
+      });
+
+      var tooltip = d3
+        .select(bubble.current)
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "black")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "white")
+        .style("position", "fixed")
+        .style('font-size','10px')
+        ;
+      
+      var showTooltip = function(event, d) {
+        tooltip
+          .transition()
+          .duration(200)
+        tooltip
+          .style("opacity", 1)
+          .html("Game: " + d.name +
+          ' | Rating: '+ d.rate)
+          .style("left", (event.x + 10) + "px")
+          .style("top", (event.y + 10) + "px")
+      }
+      var moveTooltip = function(event, d) {
+        tooltip
+          .style("left", (event.x + 10) + "px")
+          .style("top", (event.y + 10) + "px")
+      }
+      var hideTooltip = function(event, d) {
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0)
+      }
+
+      var x = d3
+        .scaleLinear()
+        .domain([0, 6000])
+        .range([0, bubble.current.width * 0.8]);
+      var y = d3
+        .scaleLinear()
+        .domain([0, 6000])
+        .range([bubble.current.height * 0.9, 0]);
+      var z = d3.scaleLinear().domain([0, 5000]).range([0, 15]);
+
+      chartsvg.current
+        .append("g")
+        .selectAll("dot")
+        .data(data)
+        .join("circle")
+        .attr('class', 'bubble')
+        .attr("cx", function (d) {
+          return x(d.wish);
+        })
+        .attr("cy", function (d) {
+          return y(d.review);
+        })
+        .attr("r", function (d) {
+          return z(d.rate*1000);
+        })
+        .style("fill", function (d) {
+          return chipColors[d.team];
+        })
+        .style("opacity", "0.4")
+        .attr("stroke", "white")
+        .style("stroke-width", "2px")
+        .on("mouseover", showTooltip)
+        .on('mousemove', moveTooltip)
+        .on('mouseleave', hideTooltip)
+    }
   }
-  const BubbleUpdate = useRef(bubblechart);
 
   useEffect(() => {
     if (!bubblechanged.current) {
@@ -67,7 +168,7 @@ export default function BubbleChart() {
       chart.width = chart.offsetWidth;
       chart.height = chart.offsetHeight;
 
-      var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+      var margin = { top: 40, right: 30, bottom: 100, left: 110 },
         width = chart.width * 0.8,
         height = chart.height * 0.9;
 
@@ -80,8 +181,20 @@ export default function BubbleChart() {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      chartsvg.current = svg;
+
+      svg.append('text')
+      .attr('text-anchor', 'end')
+      .attr('transform', 'translate('+ -55 + ',' + height/3 +')rotate(-90)')
+      .text("Number of reviews")
+
+      svg.append('text')
+      .attr('text-anchor', 'end')
+      .attr('transform', 'translate('+ width/2 + ',' + (height+70)  +')')
+      .text("Wish list")
+
       // X axis
-      var x = d3.scaleLinear().domain([0, 100]).range([0, width]);
+      var x = d3.scaleLinear().domain([0, 6000]).range([0, width]);
       var xaxis = svg.append("g");
       xaxis
         .attr("transform", "translate(0," + height + ")")
@@ -90,15 +203,20 @@ export default function BubbleChart() {
         .attr("transform", "translate(-10,0)rotate(-45)")
         .style("text-anchor", "end");
 
-        var y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+      var y = d3.scaleLinear().domain([0, 6000]).range([height, 0]);
       var yaxis = svg.append("g");
       yaxis
         .call(d3.axisLeft(y))
         .selectAll("text")
-        .attr("transform", "translate(-10,0)rotate(-45)")
         .style("text-anchor", "end");
+
+      UpdateChart([[{ title: "Nintendo" }], "debug"]);
+
+      bubblechanged.current = true;
+    } else {
+      UpdateChart(data);
     }
-  }, []);
+  }, [data]);
 
   return (
     <Grid container spacing={2}>
@@ -122,14 +240,14 @@ export default function BubbleChart() {
               </Typography>
             </CardContent>
           </Card>
-          <CheckboxesTags />
+          <CheckboxesTags update={setdata} />
         </Stack>
       </Grid>
     </Grid>
   );
 }
 
-function CheckboxesTags() {
+function CheckboxesTags(props) {
   const compamyNames = getTeams();
 
   const getChipColor = (key) => {
@@ -145,6 +263,10 @@ function CheckboxesTags() {
       multiple
       id="game-studio-selector"
       options={compamyNames}
+      defaultValue={[compamyNames[3]]}
+      limitTags={2}
+      onChange={(event, v, reason) => props.update([v, reason])}
+      isOptionEqualToValue={(option, value) => option.title === value.title}
       disableCloseOnSelect
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
