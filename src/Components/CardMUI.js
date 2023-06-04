@@ -11,7 +11,7 @@ export default function CardMUI (props) {
 
 
   useEffect(()=>{
-    if (props.data != undefined)
+    if (props.data !== undefined)
     {
       settop1(props.data[0])
       settop2(props.data[1])

@@ -90,3 +90,35 @@ span#title{
   margin-left: 25px;
 }
 
+/*-----------*/
+/* Bubble Chart */
+/*-----------*/
+
+#bubble {
+  background-color: var(--bg-color);
+}
+
+
+.leftStack > div:last-child {
+  background-color: var(--bg-color) !important;
+  border-radius: 5px;
+  color: var(--txt-color);
+}
+
+.leftStack > div:last-child input::placeholder {
+  color: var(--txt-color) !important;
+}
+
+
+#game-studio-selector-label {
+  color: var(--txt-color) !important;
+}
+
+#game-studio-selector {
+  background-color: var(--bg-color) !important;
+}
+
+.ss-tf {
+  background-color: var(--bg-color) !important;
+
+}

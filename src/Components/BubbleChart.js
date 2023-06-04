@@ -61,7 +61,6 @@ export default function BubbleChart() {
       d3.select(chart).selectAll("svg").remove();
       chart.style.width = "100%";
       chart.style.height = "100%";
-      chart.style.backgroundColor = "white";
       chart.style.borderRadius = "10px";
       chart.style.boxShadow = "0px 1px 3px -1.5px rgba(0,0,0,0.75)";
       chart.style.minHeight = "80vh";
@@ -109,13 +108,13 @@ export default function BubbleChart() {
         </Container>
       </Grid>
       <Grid item xs={3}>
-        <Stack spacing={2}>
-          <Card sx={{ minWidth: 245, maxWidth: 345 }}>
+        <Stack spacing={2} className="leftStack">
+          <Card sx={{ minWidth: 245, maxWidth: 345 }} className="App-Card">
             <CardContent>
               <Typography variant="h5" component="div">
                 Clarification
               </Typography>
-              <Typography sx={{ fontSize: 14 }} color="body" gutterBottom>
+              <Typography sx={{ fontSize: 14 }} gutterBottom>
                 In the checkbox you select studios, not companies. If you write
                 "Nintendo" for example all nintendo studios will be shown.
                 Choose just "Nintendo" if you want all the studios to be
@@ -152,10 +151,6 @@ function CheckboxesTags() {
           <Chip
             key={index}
             label={option.title}
-            style={{
-              backgroundColor: getChipColor(option.title),
-              color: "white",
-            }}
             {...getTagProps({ index })}
           />
         ))
@@ -172,12 +167,20 @@ function CheckboxesTags() {
           {option.title}
         </li>
       )}
-      style={{ width: 345 }}
+      style={{
+        width: 345,
+        backgroundColor: "#1b2838",
+        color: "#bdc1c5"
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
           label="Select Studio/s"
           placeholder="Choose one or more"
+          sx={{
+            backgroundColor: "#1b2838",
+            color: "#bdc1c5"
+          }}
         />
       )}
     />
