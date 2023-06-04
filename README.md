@@ -1,28 +1,55 @@
-# Project of Data Visualization (COM-480)
+
+# 🎮 Steaming 🎮
+> - Project for COM-480 Data Visualization Course at EPFL
+> - Website about Steam public data created by Team "No Preference"
+> - Access the website [here](https://com-480-data-visualization.github.io/project-2023-no-preference/)
+
+## 🤔 Ojectives
+
+We want to work on Steam public data, namely the time series of player count per game, per category, and other different metrics. Our goal will be to highlight player engagement toward game genres over time. We think it would be interesting if we know which game or genre is the most popular over time. We also used different data-viz features to investigate the popularity and market performance of game studios and their games.
+
+## 👨‍👩‍👧‍👦 Target audience
+
+Gamers! 🕹️
+
+
+## 💻 Technical Setup
+
+For our deployment:
+
+- We use `gh-pages` as an automated deploy branch that contains the minified builds
+
+To run our project locally, you need to do:
+
+- Clone the repo with `git clone https://github.com/com-480-data-visualization/project-2023-no-preference.git`
+- Switch to `website` branch
+- Follow the instruction in `website` branch `README.md`
+
+## 💿 Dataset
+
+Most of our dataset download from [here](https://data.mendeley.com/datasets/ycy3sy3vj2/1) and the throuogh data process can be found in `no_preference.ipynb`
+
+
+## 📍 Milestones
+**Milestone 1**:
+- You can find our first milestone [here](milestone1.pdf)
+
+
+**Milestone 2**:
+- You can find our second milestone [here](milestone2.pdf).
+
+
+
+**Milestone 3**: Final project  
+- You can find our process book [here](processBook.pdf)
+- The screencast is available [here]()
+
+
+
+## 🤝 Authors
 
 | Student's name | SCIPER |
 | -------------- | ------ |
 | Ulysse Wimder | 269583 |
 | Lau Ming Kit | 366797 |
 | Luis Busta | 366705 |
-
-[Milestone 1](milestone1.pdf) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
-
-## Milestone 1 (7th April, 5pm)
-[Milestone 1 PDF](milestone1.pdf)
-
-## Milestone 2 (7th May, 5pm)
-[Milestone 2 PDF](milestone2.pdf)
-
-
-## Milestone 3 (4th June, 5pm)
-
-**80% of the final grade**
-
-
-## Website
-We host our website on Github Pages: [no preference](https://com-480-data-visualization.github.io/project-2023-no-preference/)
-
-The website is a React App, the source code can be found in the `website` branch, and we use `gh-pages` as an automated deploy branch that contains the minified builds.
-
-
