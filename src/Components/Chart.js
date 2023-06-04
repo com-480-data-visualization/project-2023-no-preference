@@ -52,17 +52,6 @@ export default function Chart(props) {
   const change = useRef(false);
   const chart = useRef(undefined);
 
-// Function to change the width of the component
-const changeWidth = (width) => {
-    if (divRef.current) {
-        divRef.current.style.width = width;
-    }
-    };
-
-    // Call the changeWidth function to update the width
-    // You can pass the desired width as an argument
-    changeWidth("95%");
-
   //* update function
   function update(data) {
     let width = test.width * 0.8;
