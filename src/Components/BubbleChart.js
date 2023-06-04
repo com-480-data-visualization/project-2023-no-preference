@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import * as d3 from 'd3';
+import ReactDOM from 'react-dom';
 
 //MUI
 import { Container, Grid, Stack, Card, CardContent, Typography, Chip } from '@mui/material';
@@ -20,26 +22,77 @@ const colors = ['#FF0000', '#0000FF', '#1d556b', '#FF00FF', '#2a471a',
 
 
 export default function BubbleChart(){
-  const canvasRef = useRef(null);
+  const divRef = useRef(null);
+  const color = useRef({});
+  const chart = useRef(undefined);
+  
+  function update(data) {
+    var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+    width = test.width * 0.8,
+    height = test.height * 0.9;
+
+    var temp = data.sort(function (b, a) {
+      return a.value - b.value;
+    });
+
+    var xmax = Math.ceil(temp[0].value);
+    var maxrange = xmax.toString().length + 1;
+
+    var svg = chart.current;
+    
+    // X axis: rating
+    var x = d3
+    .scaleLog()
+    .domain([0, 5])
+    .range([0, width])
+    .base(10);
+    
+    // Y axis: wishlist
+    var y = d3
+    .scaleBand()
+    .domain([0, 6])
+    .range([0, height])
+    .padding(0.1);
+
+    //scale for bubble size: times listed
+    var z = d3.scaleLinear()
+    .domain([0, 5000])
+    .range([ 1, 40]);
+    
+    }
+
+    const Update = React.useRef(update);
   
   useEffect(() => {
-    const canvas = canvasRef.current;
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.style.backgroundColor = "white";
-    canvas.style.borderRadius = "10px";
-    canvas.style.boxShadow = "0px 1px 3px -1.5px rgba(0,0,0,0.75)";
-    canvas.style.minHeight = "80vh";
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const chart = divRef.current;
+    chart.style.width = "100%";
+    chart.style.height = "100%";
+    chart.style.backgroundColor = "white";
+    chart.style.borderRadius = "10px";
+    chart.style.boxShadow = "0px 1px 3px -1.5px rgba(0,0,0,0.75)";
+    chart.style.minHeight = "80vh";
+    chart.width = chart.offsetWidth;
+    chart.height = chart.offsetHeight;
+
+    var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+    width = chart.width * 0.8,
+    height = chart.height * 0.9;
+
+    // append the svg object to the body of the page
+    var svg = d3
+        .select(chart)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   }, []);
 
   return (
     <Grid container spacing={2}>
     <Grid item xs={9}>
       <Container>
-        <canvas id="myCanvas" ref={canvasRef}>
-        </canvas>
+        <div id="bubble" ref={divRef} />
       </Container>
     </Grid>
     <Grid item xs={3}>
