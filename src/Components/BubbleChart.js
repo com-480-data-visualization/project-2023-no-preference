@@ -266,7 +266,8 @@ function CheckboxesTags(props) {
       id="game-studio-selector"
       options={compamyNames}
       defaultValue={[compamyNames[3]]}
-      limitTags={2}
+      limitTags={15}
+      disableCloseOnSelect
       onChange={(event, v, reason) => props.update([v, reason])}
       isOptionEqualToValue={(option, value) => option.title === value.title}
       renderTags={(value, getTagProps) =>
