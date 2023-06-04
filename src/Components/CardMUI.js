@@ -20,7 +20,7 @@ export default function CardMUI (props) {
   }, [props.data])
 
   return (
-    <Card sx={{ maxWidth: 345, gap: 2, borderRadius: 2 }}>
+    <Card sx={{ maxWidth: 345, gap: 2, borderRadius: 2 }} className='App-Card'>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div"

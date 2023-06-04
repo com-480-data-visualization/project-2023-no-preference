@@ -4,46 +4,18 @@
   justify-content: center;
   flex-direction: column;
   font-size: calc(5px + 2vmin);
-  background-color: #E7EBF0;
-  color: black;
+  background-color: var(--fg-color);
+  color: var(--txt-color);
   margin: 0;
   margin-bottom: 15px;
-}
-
-.App-main-row {
-  display: flex;
-  flex-direction: row;
-  padding: 1em;
-}
-
-.App-main-row > div:first-child {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-}
-
-.App-main-slider {
-  max-width: 47vw;
-}
-
-.App-cardRow {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 4vh;
-  margin-bottom: 4vh;
 }
 
 .card-rank-icon {
   width: 30px;
 }
 
-.chart-demo-image {
-  width: 100%;
-}
-
 .App-NavBar {
-  background-color: var(--header-fg-color) !important;
+  background-color: var(--bg-color) !important;
 }
 
 .App-NavBar button {
@@ -51,23 +23,70 @@
   margin-left: 15px;
 }
 
-#poppy {
-  display: none;
-  background-color: pink;
-  position: absolute;
-  height: 200px;
-  width: 100px;
+.App-Card {
+  background-color: var(--bg-color) !important;
+  color: var(--txt-color) !important;
+}
+.App-Card p{
+  background-color: var(--bg-color) !important;
+  color: var(--txt-color) !important;
 }
 
-.chart-buttons-container {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between;
+.App-Card li[role="separator"] {
+  border-top: 1px solid var(--dark-txt-color);
+  margin: auto;
+}
+
+/*-----------*/
+/* Bar Chart */
+/*-----------*/
+
+#test {
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0px 1px 3px -1.5px rgba(0,0,0,0.75);
+  min-height: 65vh;
+}
+
+
+#poppy {
+  display: none;
+  background-color: var(--fg-color);
+  position: absolute;
+  border-radius: 15px;
+  padding: 15px;
+  max-width: 400px;
+  border: 1px solid var(--dark-txt-color);
+  z-index: 999;
+}
+
+#poppy h3 {
+  text-align: center;
+}
+
+#poppy p {
+  font-size: 0.8em;
+}
+
+.chart-title-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+span#title{
+  text-align: center;
+  color: var(--txt-color);
 }
 
 #slider-value {
-  display: block;
-  border: 1px solid gray;
+  border: 1px solid var(--dark-txt-color);
   padding: 5px;
-  background-color: white;
+  background-color: var(--fg-color);
+  margin-left: 25px;
 }
+

@@ -9,7 +9,7 @@ footer {
   margin-top: 15px;
   padding: var(--footer-padding);
   padding-bottom: 0;
-  background-color: var(--header-fg-color);
+  background-color: var(--bg-color);
   color: var(--fg-color);
 }
 
@@ -21,23 +21,24 @@ footer {
 
 .footer-row > div {
   padding: 15px;
-  background-color: var(--header-fg-color) !important;
+  background-color: var(--bg-color) !important;
   text-align: center;
 }
 
 .footer-bottom {
   text-align: center;
-  color: gray;
+  color: var(--txt-color);
   font-size: 0.7em;
   margin-top: 15px;
   padding-bottom: 5px;
   padding-top: 5px;
-  border-top: 1px solid gray;
+  border-top: 1px solid var(--dark-txt-color);
 }
 
 .footer-row > div p {
   padding: 0;
   margin: 0;
+  color: var(--txt-color);
 }
 
 .footer-row > div ul > li {
@@ -49,12 +50,12 @@ footer {
 }
 
 .footer-row > div a {
-  color: white;
+  color: var(--txt-color);
   font-size: 1em;
 }
 
 .footer-row hr {
-  background-color: grey;
+  background-color: var(--dark-txt-color);
 }
 
 .footer-row svg text:hover {
@@ -62,5 +63,5 @@ footer {
 }
 
 .footer-row h5 {
-  color: var(--fg-color);
+  color: var(--txt-color);
 }
