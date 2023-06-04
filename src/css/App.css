@@ -45,3 +45,29 @@
 .App-NavBar {
   background-color: var(--header-fg-color) !important;
 }
+
+.App-NavBar button {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+#poppy {
+  display: none;
+  background-color: pink;
+  position: absolute;
+  height: 200px;
+  width: 100px;
+}
+
+.chart-buttons-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+#slider-value {
+  display: block;
+  border: 1px solid gray;
+  padding: 5px;
+  background-color: white;
+}

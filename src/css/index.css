@@ -53,6 +53,13 @@ code {
   animation-fill-mode: backwards;
 }
 
+.show-me-up {
+  animation-name: appear-up;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+
 /* ------------------- */
 /* ANIMATION FUNCTIONS */
 /* ------------------- */

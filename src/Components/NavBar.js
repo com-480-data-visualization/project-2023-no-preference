@@ -11,6 +11,11 @@ function returnButton() {
     document.getElementsByTagName('body')[0].style.overflow = "hidden";
 }
 
+async function credits() {
+    // +1000000 social credits GG
+    document.getElementsByTagName('footer')[0].scrollIntoView({behavior:'smooth'});
+  }
+
 
 export default function NavBar() {
     return (
@@ -19,8 +24,11 @@ export default function NavBar() {
             <Typography variant="h6" component="h6" sx={{ flexGrow: 1 }} className='logo-inline'>
                 Steaming
             </Typography>
-            <Button disableRipple color="inherit" onClick={returnButton}>
-                Return
+            <Button color="inherit" onClick={credits}>
+                Credits
+            </Button>
+            <Button color="inherit" onClick={returnButton}>
+                Menu
             </Button>
         </Toolbar>
         </AppBar> 
