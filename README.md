@@ -42,7 +42,7 @@ Most of our dataset download from [here](https://data.mendeley.com/datasets/ycy3
 
 **Milestone 3**: Final project  
 - You can find our process book [here](processBook.pdf)
-- The screencast is available [here]()
+- The screencast is available [here](https://www.youtube.com/watch?v=ruqKOShHQIE)
 
 
 
