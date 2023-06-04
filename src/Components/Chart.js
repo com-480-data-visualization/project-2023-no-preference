@@ -30,7 +30,7 @@ export default function Chart(props) {
 
   //* update function
   function update(data) {
-    var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+    var margin = { top: 30, right: 30, bottom: 50, left: 110 },
       width = test.width * 0.8,
       height = test.height * 0.9;
 
@@ -135,7 +135,7 @@ export default function Chart(props) {
       test.width = test.offsetWidth;
       test.height = test.offsetHeight;
 
-      var margin = { top: 50, right: 30, bottom: 50, left: 110 },
+      var margin = { top: 30, right: 30, bottom: 50, left: 110 },
         width = test.width * 0.8,
         height = test.height * 0.9;
 
@@ -200,14 +200,13 @@ export default function Chart(props) {
 
   return (
     <Container>
-      {/* <canvas id="myCanvas" ref={canvasRef} >
-            </canvas> */}
       <div id={BAR_CHART_ID} ref={divRef}>
+        <span id="title">Player count by categories</span>
       </div>
       <div id={POPUP_ID}></div>
       <Box sx={{ m: "0.5rem" }}>
         <CoolSlider
-          valueLabelDisplay="auto"
+          valueLabelDisplay="off"
           defaultValue={0}
           max={Object.keys(props.date).length - 1}
           scale={(value) => props.date[value]}
@@ -216,17 +215,15 @@ export default function Chart(props) {
             props.changeDate(value.target.value);
             document.getElementById("slider-value").textContent = props.date[value.target.value];
           }}
-          onLoad={(value)=>{
-            document.getElementById("slider-value").textContent = props.date[value.target.value];
-          }}
         />
             </Box>
+            
         <div style={{
             display : 'flex',
             alignItems : 'center',
             justifyContent : 'center'
         }}>
-      <ButtonRow />
+      <span id="slider-value">{props.date[0]}</span>
         </div>
     </Container>
   );
