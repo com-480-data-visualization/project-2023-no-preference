@@ -87,10 +87,7 @@ export default function Chart(props) {
       .attr("x", x(0))
       .attr("height", y.bandwidth())
       .attr("width", function (d) {
-        if (d.value == NaN) {
-          return 0;
-        }
-        return (width * d.value) / xmax;
+        return x(d.value)
       })
       .attr("fill", function (d) {
         return color.current[d.group];
@@ -111,6 +108,8 @@ export default function Chart(props) {
         console.log(d.group);
         ReactDOM.render(<SteamGameDetails />, poppy);
       });
+
+      u.exit().remove()
   }
 
   const Update = React.useRef(update);
