@@ -96,6 +96,7 @@ span#title{
 
 #bubble {
   background-color: var(--bg-color);
+  color: var(--txt-color) !important;
 }
 
 

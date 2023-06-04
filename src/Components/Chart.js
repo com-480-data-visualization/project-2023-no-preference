@@ -119,6 +119,8 @@ export default function Chart(props) {
 
       u.on("mouseout", () => popDown());
       u.on("mousemove", (e, d) => popUp(e, d));
+
+      u.exit().remove();
   }
 
   const Update = React.useRef(update);
