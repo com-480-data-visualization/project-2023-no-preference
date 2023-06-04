@@ -122,7 +122,7 @@ export default function BubbleChart() {
       var x = d3
         .scaleLinear()
         .domain([0, 6000])
-        .range([0, bubble.current.width * 0.8]);
+        .range([0, bubble.current.width * 0.8])
       var y = d3
         .scaleLinear()
         .domain([0, 6000])
@@ -187,11 +187,13 @@ export default function BubbleChart() {
       .attr('text-anchor', 'end')
       .attr('transform', 'translate('+ -55 + ',' + height/3 +')rotate(-90)')
       .text("Number of reviews")
+      .style('fill', 'white')
 
       svg.append('text')
       .attr('text-anchor', 'end')
       .attr('transform', 'translate('+ width/2 + ',' + (height+70)  +')')
       .text("Wish list")
+      .style('fill', 'white')
 
       // X axis
       var x = d3.scaleLinear().domain([0, 6000]).range([0, width]);
