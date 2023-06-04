@@ -27,7 +27,7 @@ To run our project locally, you need to do:
 
 ## 💿 Dataset
 
-Most of our dataset download from [here](https://data.mendeley.com/datasets/ycy3sy3vj2/1) and the throuogh data process can be found in `no_preference.ipynb`
+Most of our dataset download from [here](https://data.mendeley.com/datasets/ycy3sy3vj2/1) and the throuogh data processing can be found in `no_preference.ipynb`
 
 
 ## 📍 Milestones
