@@ -269,7 +269,6 @@ function CheckboxesTags(props) {
       limitTags={2}
       onChange={(event, v, reason) => props.update([v, reason])}
       isOptionEqualToValue={(option, value) => option.title === value.title}
-      disableCloseOnSelect
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
           <Chip
