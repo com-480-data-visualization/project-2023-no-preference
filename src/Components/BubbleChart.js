@@ -91,7 +91,7 @@ export default function BubbleChart() {
         .attr("transform", "translate(-10,0)rotate(-45)")
         .style("text-anchor", "end");
 
-        var y = d3.scaleLinear().domain([0, 100]).range([0, height]);
+        var y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
       var yaxis = svg.append("g");
       yaxis
         .call(d3.axisLeft(y))
