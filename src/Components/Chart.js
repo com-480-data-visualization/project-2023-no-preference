@@ -78,7 +78,8 @@ export default function Chart(props) {
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
+      .attr("font-size", "1.5em");
 
 
     // Y axis
@@ -86,7 +87,7 @@ export default function Chart(props) {
       .scaleBand()
       .domain(props.data.map((d) => d.group))
       .range([0, height])
-      .padding(0.1)
+      .padding(0.2)
       .domain(
         data.map(function (d) {
           return d.group;
@@ -222,14 +223,13 @@ export default function Chart(props) {
             document.getElementById("slider-value").textContent = props.date[value.target.value];
           }}
         />
-            </Box>
-            
-        <div style={{
-            display : 'flex',
-            alignItems : 'center',
-            justifyContent : 'center'
-        }}>
-        </div>
+      </Box>
+      <div style={{
+          display : 'flex',
+          alignItems : 'center',
+          justifyContent : 'center'
+      }}>
+      </div>
     </Container>
   );
 }
@@ -239,15 +239,15 @@ export default function Chart(props) {
  * https://mui.com/material-ui/api/slider/
  */
 const CoolSlider = styled(Slider)({
-  color: "#1976D2",
-  height: 8,
+  color: "#bdc1c5",
+  height: 15,
   "& .MuiSlider-track": {
-    border: "none",
+    border: "1px solid #1b2838",
   },
   "& .MuiSlider-thumb": {
     height: 24,
     width: 24,
-    backgroundColor: "#fff",
+    backgroundColor: "#1b2838",
     border: "2px solid currentColor",
     "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",
