@@ -18,7 +18,7 @@ let footerMenu1 = {
 let footerMenu2 = {
   title: "Other links:",
   menu: [
-    {text: "Process Book", link: require("../process_book.pdf")},
+    {text: "Process Book", link: "https://github.com/com-480-data-visualization/project-2023-no-preference/blob/website/process_book.pdf"},
     {text: "Screencast", link: "https://www.youtube.com/watch?v=o-YBDTqX_ZU"}
   ]
 }
